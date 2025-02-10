@@ -200,8 +200,7 @@
                             <li class="nav-title">MENU</li>
                             <li>
                                 <a href="{{ url('/dashboard') }}" class="nav-link">
-                                    <i class="fas fa-home"
-                                        style="{{ Request::is('dashboard*') ? 'color: blue' : 'color: black' }}"></i>
+                                    <i class="fas fa-home" style="{{ Request::is('dashboard*') ? 'color: blue' : 'color: black' }}"></i>
                                     <span style="{{ Request::is('dashboard*') ? 'color: blue' : '' }}">Home</span>
                                 </a>
                             </li>
