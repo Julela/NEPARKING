@@ -19,7 +19,16 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            $table->string('google_token', 255)->nullable();
+            $table->string('google_refresh_token', 255)->nullable();
+            $table->string('location', 255)->nullable();
+            $table->string('qr_code', 255)->nullable();
+            $table->string('plat_number', 255)->nullable();
+            $table->string('class', 255)->nullable();
+            $table->string('img', 255)->nullable();
+          
         });
+        
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();

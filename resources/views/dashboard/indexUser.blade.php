@@ -13,7 +13,7 @@
                         </div>
                         <div class="col-6">
                             <div class="inner-right">
-                                <p>Jam Kerja</p>
+                                <p>NEPARKING</p>
                                 <h3>
                                     {{-- <span>{{ $shift_karyawan->Shift->jam_masuk ?? '' }} - {{ $shift_karyawan->Shift->jam_keluar ?? '' }}</span> --}}
                                 </h3>

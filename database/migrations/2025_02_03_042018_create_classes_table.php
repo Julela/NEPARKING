@@ -8,15 +8,20 @@ return new class extends Migration {
     public function up(): void
     {
         
-        Schema::create('class', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
             $table->string('class_name', 255)->nullable();
             $table->string('quota_per_class', 255)->nullable();
+            // $table->unsignedBigInteger('user_id');
+
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 
+
     public function down(): void
     {
-        Schema::dropIfExists('class');
+        Schema::dropIfExists('classes');
     }
 };
