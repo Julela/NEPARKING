@@ -186,7 +186,7 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="{{ url('/') }}" class="sidebar-logo">
                             <img src="{{ url('/myhr/images/logo.png') }}" alt="logo">
-                            <h5>Absensi</h5>
+                            <h5>Neparking</h5>
                         </a>
                         <a href="javascript:void(0);" class="clear-panel"> <i class="icon-close1"></i> </a>
                     </div>
@@ -230,21 +230,21 @@
                                 <a href="{{ url('/my-dokumen') }}" class="nav-link">
                                     <i class="fa fa-folder-open"
                                         style="{{ Request::is('my-dokumen*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('my-dokumen*') ? 'color: blue' : '' }}">Dokumen</span>
+                                    <span style="{{ Request::is('my-dokumen*') ? 'color: blue' : '' }}">Jadwal Pelajaran</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/kasbon') }}" class="nav-link">
                                     <i class="fa fa-comments-dollar"
                                         style="{{ Request::is('kasbon*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('kasbon*') ? 'color: blue' : '' }}">Kasbon</span>
+                                    <span style="{{ Request::is('kasbon*') ? 'color: blue' : '' }}">Parkir</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ url('/cuti') }}" class="nav-link">
                                     <i class="fa fa-hourglass-half"
                                         style="{{ Request::is('cuti*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('cuti*') ? 'color: blue' : '' }}">Cuti / Izin</span>
+                                    <span style="{{ Request::is('cuti*') ? 'color: blue' : '' }}">Izin / Sakit</span>
                                 </a>
                             </li>
                             <li>
