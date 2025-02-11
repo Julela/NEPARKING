@@ -261,10 +261,10 @@
                         <img src="{{ url('/myhr/images/banner/banner3.jpg') }}" alt="images">
                     </div>
                     <div class="swiper-slide">
-                        <img src="{{ url('/myhr/images/banner/banner2.jpg') }}" alt="images">
+                        <img src="{{ url('/myhr/images/banner/banner4.jpg') }}" alt="images">
                     </div>
                     <div class="swiper-slide">
-                        <img src="{{ url('/myhr/images/banner/banner3.jpg') }}" alt="images">
+                        <img src="{{ url('/myhr/images/banner/banner2.jpg') }}" alt="images">
                     </div>
                 </div>
                 </div>
