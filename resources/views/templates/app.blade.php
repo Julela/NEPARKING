@@ -151,7 +151,7 @@
             <ul class="tf-navigation-bar">
                 <li class="{{ Request::is('dashboard*') ? 'active' : '' }}"><a
                         class="fw_6 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ url('/dashboard') }}"><i
+                        href="{{ url('/') }}"><i
                             class="{{ Request::is('dashboard*') ? 'icon-home2' : 'icon-home' }}"></i> Home</a> </li>
                 <li class="{{ Request::is('my-absen*') ? 'active' : '' }}"><a
                         class="fw_4 d-flex justify-content-center align-items-center flex-column"

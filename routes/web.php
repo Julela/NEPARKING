@@ -34,8 +34,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
+// LOGIN WITH GOOGLE
 Route::get('/auth/google', [SocialliteController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [SocialliteController::class, 'handleGoogleCallback']);
+
+Route::get('/my-profile', [ProfileController::class, 'myProfile'])->middleware('auth');
+
 
 require __DIR__.'/auth.php';
