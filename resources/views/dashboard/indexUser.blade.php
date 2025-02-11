@@ -33,22 +33,22 @@
                                 Payroll
                             </a>
                         </li>
-                        <li class="wallet-card-item"><a class="fw_6" href="{{ url('/my-dokumen') }}">
-                                <ul class="icon icon-topup">
+                        <li class="wallet-card-item"><a class="fw_6" href="{{ url('/jadwal-pelajaran') }}">
+                                <ul class="fas fa-chalkboard-teacher fa-2x">
                                     <li class="path1"></li>
                                     <li class="path2"></li>
                                     <li class="path3"></li>
                                     <li class="path4"></li>
                                 </ul>
-                                Dokumen
+                                Jadwal pelajaran
                             </a></li>
-                        <li class="wallet-card-item"><a class="fw_6" href="{{ url('/kasbon') }}">
-                                <ul class="icon icon-group-credit-card">
+                        <li class="wallet-card-item"><a class="fw_6" href="{{ url('/parkir') }}">
+                                <ul class="fas fa-motorcycle fa-2x">
                                     <li class="path1"></li>
                                     <li class="path2"></li>
                                     <li class="path3"></li>
                                 </ul>
-                                Kasbon
+                                Parkir
                             </a></li>
                     </ul>
                 </div>
@@ -77,7 +77,7 @@
                             </svg>
                             
                     </div>
-                    Absensi
+                    Qr code
                     </a> 
                 </li>
                 <li>
@@ -96,7 +96,7 @@
                             </svg>
                             
                     </div>
-                    Cuti & Izin  
+                    Izin / Sakit
                     </a> 
                 </li>
                 <li>
@@ -162,7 +162,7 @@
                             </defs>
                         </svg>
                     </div>
-                    Request Location
+                    Minta Lokasi
                     </a> 
                 </li>
                 <li>
@@ -197,7 +197,7 @@
                                 <path d="M20.6897 19.0344H19.8622C19.6336 19.0344 19.4484 19.2197 19.4484 19.4482V21.1034C19.4484 21.3319 19.6336 21.5172 19.8622 21.5172H20.6897C20.9183 21.5172 21.1035 21.3319 21.1035 21.1034V19.4482C21.1035 19.2197 20.9183 19.0344 20.6897 19.0344Z" fill="#BDC3C7"/>
                             </svg>
                         </div>
-                        Change Password
+                        Ganti Password
                     </a> 
                 </li>
                 <li>
@@ -236,7 +236,7 @@
                             </svg>
                                 
                         </div>
-                        Other
+                        Lainnya
                     </a> 
                 </li>  
             </ul>
@@ -247,7 +247,7 @@
         <div class="tf-container">
             <div class="mt-5">
                 <div class="d-flex justify-content-between">
-                    <h3>Berita Gacoan</h3> <a href="#" class="primary_color fw_6">View All</a>
+                    <h3>Berita Sekolah</h3> <a href="#" class="primary_color fw_6">Lihat Semua</a>
                 </div>
                 <div class="swiper-container banner-tes">
                 <div class="swiper-wrapper">
@@ -271,7 +271,7 @@
             </div>
             <div class="mt-5">
                 <div class="d-flex justify-content-between">
-                    <h3>Informasi Gacoan</h3> <a href="#" class="primary_color fw_6">View All</a>
+                    <h3>Informasi Sekolah</h3> <a href="#" class="primary_color fw_6">Lihat Semua</a>
                 </div>
                 <div class="swiper-container tes-gift mt-5">
                     <div class="swiper-wrapper">
