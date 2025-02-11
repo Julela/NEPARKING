@@ -35,8 +35,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-Route::get('auth/google', [SocialliteController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [SocialliteController::class, 'handleGoogleCallback']);
+Route::get('/auth/google', [SocialliteController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialliteController::class, 'handleGoogleCallback']);
 
 require __DIR__.'/auth.php';
