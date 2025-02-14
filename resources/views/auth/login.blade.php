@@ -63,15 +63,15 @@
 
     <div class="font-[sans-serif] bg-white flex items-center justify-center md:h-screen p-4">
         <div class="shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)] max-w-6xl max-md:max-w-lg rounded-md p-6">
-            <a href="javascript:void(0)"><img src="https://readymadeui.com/readymadeui.svg" alt="logo"
+            <!-- <a href="javascript:void(0)"><img src="{{ asset('img/logoneper.svg') }}" alt="logo"
                     class='w-36 md:mb-4 mb-12' />
-            </a>
+            </a> -->
 
             <div class="grid md:grid-cols-2 items-center gap-8">
                 <div class="max-md:order-1">
-                    <img src="https://readymadeui.com/signin-image.webp" class="w-full aspect-[12/11] object-contain"
+                    <img src="{{ asset('img/5755660.svg') }}" class="w-full aspect-[12/11] object-contain"
                         alt="login-image" />
-                </div>
+                </div> 
 
                 <form class="md:max-w-md w-full mx-auto" method="POST" action="/login">
                     @csrf

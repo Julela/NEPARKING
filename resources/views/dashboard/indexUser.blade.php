@@ -247,51 +247,55 @@
         <div class="tf-container">
             <div class="mt-5">
                 <div class="d-flex justify-content-between">
-                    <h3>Berita Gacoan</h3> <a href="#" class="primary_color fw_6">View All</a>
+                    <h3>Berita Sekolah</h3> <a href="#" class="primary_color fw_6">View All</a>
                 </div>
                 <div class="swiper-container banner-tes">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{{ url('/myhr/images/banner/banner.jpg') }}" alt="images">
+                        <!-- <img src="{{ url('/myhr/images/banner/banner.jpg') }}" alt="images"> -->
+                        <img src="{{ asset('img/bannerneper.png') }}" alt="images">
                     </div>
                     <div class="swiper-slide">
-                        <img src="{{ url('/myhr/images/banner/banner2.jpg') }}" alt="images">
+                        <img src="{{ asset('img/haribatik.png') }}" alt="images">
+                        <!-- <img src="{{ url('/myhr/images/banner/banner2.jpg') }}" alt="images"> -->
                     </div>
                     <div class="swiper-slide">
+                        <img src="{{ asset('img/perpus.png') }}" alt="images">
+                        <!-- <img src="{{ url('/myhr/images/banner/banner3.jpg') }}" alt="images"> -->
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="{{ asset('img/ramadhan].png') }}" alt="images">
+                        <!-- <img src="{{ url('/myhr/images/banner/banner2.jpg') }}" alt="images"> -->
+                    </div>
+                    <!-- <div class="swiper-slide">
                         <img src="{{ url('/myhr/images/banner/banner3.jpg') }}" alt="images">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ url('/myhr/images/banner/banner2.jpg') }}" alt="images">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="{{ url('/myhr/images/banner/banner3.jpg') }}" alt="images">
-                    </div>
+                    </div> -->
                 </div>
                 </div>
             </div>
             <div class="mt-5">
                 <div class="d-flex justify-content-between">
-                    <h3>Informasi Gacoan</h3> <a href="#" class="primary_color fw_6">View All</a>
+                    <h3>Informasi Sekolah</h3> <a href="#" class="primary_color fw_6">View All</a>
                 </div>
                 <div class="swiper-container tes-gift mt-5">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <div class="box-gift-card bg_gift-card-1">
-                                <ul class="desc">
-                                <li class="name"><a href="66_deal-near-you.html" class="on_surface_color fw_7">THE TEST KITCHEN</a></li> 
-                                <li class="code success_color fw_6">R100</li> 
-                                <li class="counpon">COUPON</li> 
-                                <li>
-                                        <i class="icon-noti"></i>
-                                        Term of use
-                                </li>   
-                                </ul>
-                                <div class="img-gift">
-                                    <img src="{{ url('/myhr/images/rewards/gift-1.jpg') }}" alt="images">
-                                </div>
+                                <!-- <div class="img-gift"> -->
+                                    <!-- <img src="{{ url('/myhr/images/rewards/gift-1.jpg') }}" alt="images"> -->
+                                    <img src="{{ asset('img/infobanner2.png') }}" alt="images">
+                                <!-- </div> -->
                             </div> 
                         </div>
                         <div class="swiper-slide">
+                            <div class="box-gift-card bg_gift-card-1">
+                                <!-- <div class="img-gift"> -->
+                                    <!-- <img src="{{ url('/myhr/images/rewards/gift-1.jpg') }}" alt="images"> -->
+                                    <img src="{{ asset('img/expo.png') }}" alt="images">
+                                <!-- </div> -->
+                            </div> 
+                        </div>
+                        <!-- <div class="swiper-slide">
                             <div class="box-gift-card bg_gift-card-2">
                                 <ul class="desc">
                                 <li class="name"><a href="66_deal-near-you.html" class="white_color fw_5">THE TEST KITCHEN</a></li> 
@@ -306,8 +310,8 @@
                                     <img src="{{ url('/myhr/images/rewards/gift-2.jpg') }}" alt="images">
                                 </div>
                             </div> 
-                        </div>
-                        <div class="swiper-slide space1">
+                        </div> -->
+                        <!-- <div class="swiper-slide space1">
                             <div class="box-gift-card bg_gift-card-1">
                                 <ul class="desc">
                                 <li class="name"><a href="66_deal-near-you.html" class="on_surface_color fw_7">THE TEST KITCHEN</a></li> 
@@ -322,7 +326,7 @@
                                     <img src="{{ url('/myhr/images/rewards/gift-1.jpg') }}" alt="images">
                                 </div>
                             </div>
-                        </div> 
+                        </div>  -->
                     </div>
                 </div>
             </div>
