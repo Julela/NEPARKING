@@ -24,17 +24,13 @@
             <div class="wallet-footer">
                 <ul class="d-flex justify-content-between align-items-center">
                     <li class="wallet-card-item">
-                        <a href="{{ url('/payroll') }}" class="fw_6 text-center">
-                            <ul class="icon icon-group-transfers">
-                                <li class="path1"></li>
-                                <li class="path2"></li>
-                                <li class="path3"></li>
-                            </ul>
-                            Payroll
+                        <a href="{{ url('/kendaraan') }}" class="fw_6 text-center">
+                        <i class="fas fa-motorcycle fa-2x"></i> 
+                        Kendaraan Saya
                         </a>
                     </li>
                     <li class="wallet-card-item"><a class="fw_6" href="{{ url('/jadwal-pelajaran') }}">
-                            <ul class="fas fa-chalkboard-teacher fa-2x">
+                            <ul class="fas fa-calendar-alt fa-2x">
                                 <li class="path1"></li>
                                 <li class="path2"></li>
                                 <li class="path3"></li>
@@ -43,7 +39,7 @@
                             Jadwal pelajaran
                         </a></li>
                     <li class="wallet-card-item"><a class="fw_6" href="{{ url('/parkir') }}">
-                            <ul class="fas fa-motorcycle fa-2x">
+                            <ul class="fas fa-parking fa-2x">
                                 <li class="path1"></li>
                                 <li class="path2"></li>
                                 <li class="path3"></li>
