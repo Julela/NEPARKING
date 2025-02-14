@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('dashboard.indexUser');
 })->name('home');
 
+Route::get('/admin', function () {
+    return view('dashboard.index');
+})->name('home');
+
 //ROUTE LOGIN REGIS MASIH PAKE YANG INI
 Route::get('/dashboard', function () {
     return view('dashboard');

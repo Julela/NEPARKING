@@ -5,12 +5,12 @@
             <div class="tf-balance-box">
                  <div class="d-flex justify-content-between align-items-center">
                     <div class="inner-left d-flex justify-content-between align-items-center">
-                         {{-- @if(auth()->user()->foto_karyawan == null) 
+                         @if(auth()->user()->img == null) 
                             <img src="{{ url('assets/img/foto_default.jpg') }}" alt="image">
                         @else
-                            <img src="{{ url('/storage/'.auth()->user()->foto_karyawan) }}" alt="image">
+                            <img src="{{ url('/storage/'.auth()->user()->img) }}" alt="image">
                         @endif
-                        <p class="fw_7 on_surface_color">{{ auth()->user()->name }}</p> --}}
+                        <p class="fw_7 on_surface_color">{{ auth()->user()->name }}</p>
                     </div>
                     {{-- <p class="fw_7 on_surface_color">{{ auth()->user()->Jabatan->nama_jabatan }}</p> --}}
                 </div> 
