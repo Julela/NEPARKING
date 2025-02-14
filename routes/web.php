@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('dashboard.indexUser');
 })->name('home');
 
+Route::get('/admin', function () {
+    return view('dashboard.index');
+})->name('home');
+
 //ROUTE LOGIN REGIS MASIH PAKE YANG INI
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -34,9 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// LOGIN WITH GOOGLE
+Route::get('/auth/google', [SocialliteController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialliteController::class, 'handleGoogleCallback']);
 
+Route::get('/my-profile', [ProfileController::class, 'myProfile'])->middleware('auth');
 
-Route::get('auth/google', [SocialliteController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('auth/google/callback', [SocialliteController::class, 'handleGoogleCallback']);
 
 require __DIR__.'/auth.php';

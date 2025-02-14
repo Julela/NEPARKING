@@ -118,11 +118,12 @@
                     </div>
 
                     <div class="mt-8">
-                        <button type="button"
-                            class="w-full flex items-center justify-center gap-2 shadow-xl py-2.5 px-4 text-sm font-semibold tracking-wide rounded-md text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 focus:outline-none">
-                            <i class="fab fa-google text-blue-600"></i>
-                            Sign in dengan Google
-                        </button>
+                        <a href="/auth/google"> <button type="button"
+                                class="w-full flex items-center justify-center gap-2 shadow-xl py-2.5 px-4 text-sm font-semibold tracking-wide rounded-md text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 focus:outline-none">
+                                <i class="fab fa-google text-blue-600"></i>
+                                Sign in dengan Google
+                            </button>
+                        </a>
                     </div>
 
                     <div class="flex flex-wrap items-center justify-between gap-4 mt-6">
@@ -145,8 +146,7 @@
                             class="w-full shadow-xl py-2.5 px-4 text-sm font-semibold tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none">
                             Sign in
                         </button>
-                        <p class="text-gray-800 text-sm text-center mt-6">Belum mempunyai akun? <a
-                                href="/register"
+                        <p class="text-gray-800 text-sm text-center mt-6">Belum mempunyai akun? <a href="/register"
                                 class="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap">Register
                                 disini</a></p>
                     </div>

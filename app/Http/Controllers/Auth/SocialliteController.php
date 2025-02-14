@@ -17,22 +17,33 @@ class SocialliteController extends Controller
     }
 
 
-    public function callback()
+    public function handleGoogleCallback()
     {
         $socialUser = Socialite::driver('google')->user();
+
+
+        $registeredUser = User::Where("google_id", $socialUser->id)->first();
+
+        if(!$registeredUser){
+
+            $user = User::updateOrCreate([
+                'google_id' => $socialUser->id,
+            ], [
+                'name' => $socialUser->name,
+                'email' => $socialUser->email,
+                'google_token' => $socialUser->token,
+                'password' => bcrypt('default_password'),
+                'google_refresh_token' => $socialUser->refreshToken,
+            ]);
     
+            Auth::login($user);
+    
+            return redirect('/');
 
-        $user = User::updateOrCreate([
-            'google_id' => $socialUser->id,
-        ], [
-            'name' => $socialUser->name,
-            'email' => $socialUser->email,
-            'google_token' => $socialUser->token,
-            'google_refresh_token' => $socialUser->refreshToken,
-        ]);
-
-        Auth::login($user);
-
-        return redirect('/dashboard');
+        }
+      
+        Auth::login($registeredUser);
+    
+        return redirect('/');
     }
 }
