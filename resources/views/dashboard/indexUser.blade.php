@@ -6,6 +6,7 @@
             <div class="balance">
                 <div class="row">
                     <div class="col-6 br-right">
+                        <p>Hai, User!</p>
                         <div class="inner-left">
                             {{-- <p>{{ $shift_karyawan->Shift->nama_shift ?? '-' }}</p> --}}
                             {{-- <h4>{{ auth()->user()->Lokasi->nama_lokasi }}</h4> --}}
@@ -29,7 +30,7 @@
                         Kendaraan Saya
                         </a>
                     </li>
-                    <li class="wallet-card-item"><a class="fw_6" href="{{ url('/jadwal-pelajaran') }}">
+                    <li class="wallet-card-item"><a class="fw_6 text-center" href="{{ url('/jadwal-pelajaran') }}">
                             <ul class="fas fa-calendar-alt fa-2x">
                                 <li class="path1"></li>
                                 <li class="path2"></li>

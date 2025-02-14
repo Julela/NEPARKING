@@ -6,7 +6,7 @@
                  <div class="d-flex justify-content-between align-items-center">
                     <div class="inner-left d-flex justify-content-between align-items-center">
                          @if(auth()->user()->img == null) 
-                            <img src="{{ url('assets/img/foto_default.jpg') }}" alt="image">
+                            <img src="{{ asset('img/profile.jpg') }}" alt="profile">
                         @else
                             <img src="{{ url('/storage/'.auth()->user()->img) }}" alt="image">
                         @endif
