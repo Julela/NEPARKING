@@ -30,8 +30,8 @@
                         Kendaraan Saya
                         </a>
                     </li>
-                    <li class="wallet-card-item"><a class="fw_6 text-center" href="{{ url('/jadwal-pelajaran') }}">
-                            <ul class="fas fa-calendar-alt fa-2x">
+                    <li class="wallet-card-item"><a class="fw_6" href="{{ url('/jadwal-pelajaran') }}">
+                            <ul class="fas fa-chalkboard-teacher fa-2x">
                                 <li class="path1"></li>
                                 <li class="path2"></li>
                                 <li class="path3"></li>
