@@ -26,12 +26,12 @@
                 <ul class="d-flex justify-content-between align-items-center">
                     <li class="wallet-card-item">
                         <a href="{{ url('/kendaraan') }}" class="fw_6 text-center">
-                        <i class="fas fa-motorcycle fa-2x"></i> 
+                        <i class="fas fa-motorcycle fa-2x"  style="color: indigo;"></i> 
                         Kendaraan Saya
                         </a>
                     </li>
-                    <li class="wallet-card-item"><a class="fw_6" href="{{ url('/jadwal-pelajaran') }}">
-                            <ul class="fas fa-chalkboard-teacher fa-2x">
+                    <li class="wallet-card-item"><a class="fw_6" style="text-align: center;" href="{{ url('/jadwal-pelajaran') }}">
+                            <ul class="fas fa-chalkboard-teacher fa-2x" style="color: indigo;">
                                 <li class="path1"></li>
                                 <li class="path2"></li>
                                 <li class="path3"></li>
@@ -40,7 +40,7 @@
                             Jadwal pelajaran
                         </a></li>
                     <li class="wallet-card-item"><a class="fw_6" href="{{ url('/parkir') }}">
-                            <ul class="fas fa-parking fa-2x">
+                            <ul class="fas fa-parking fa-2x" style="color: indigo;">
                                 <li class="path1"></li>
                                 <li class="path2"></li>
                                 <li class="path3"></li>
