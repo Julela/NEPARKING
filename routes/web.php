@@ -6,6 +6,21 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\QrController;
+
+
+//Data kendaraan
+Route::middleware(['auth'])->group(function () {
+    Route::get('/kendaraan', [KendaraanController::class, 'index'])->name('kendaraan.index');
+    Route::get('/kendaraan/create', [KendaraanController::class, 'create'])->name('kendaraan.create');
+    Route::post('/kendaraan', [KendaraanController::class, 'store'])->name('kendaraan.store');
+    Route::get('/kendaraan/{id}/edit', [KendaraanController::class, 'edit'])->name('kendaraan.edit');
+    Route::put('/kendaraan/{id}', [KendaraanController::class, 'update'])->name('kendaraan.update');
+    Route::delete('/kendaraan/{id}', [KendaraanController::class, 'destroy'])->name('kendaraan.destroy');
+});
+
+Route::get('/qr', [QrController::class, 'index'])->name('qr.index');
 
 
 // Route::get('/', function () {

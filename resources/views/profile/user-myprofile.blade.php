@@ -17,6 +17,7 @@
             </div>
         </div>
     </div>
+    <br>
     <div class="tf-spacing-20"></div>
     <div class="transfer-content">
         <form class="tf-form" action="{{ url('/my-profile/update/' . auth()->user()->id) }}" enctype="multipart/form-data"
@@ -172,111 +173,6 @@
                     <input type="number" class="@error('izin_pulang_cepat') is-invalid @enderror" name="izin_pulang_cepat"
                         value="{{ old('izin_pulang_cepat', auth()->user()->izin_pulang_cepat) }}" readonly />
                     @error('izin_pulang_cepat')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <h3>Penjumlahan Gaji</h3>
-                <br>
-                <div class="group-input">
-                    <label>Gaji Pokok</label>
-                    <input type="text" class="money @error('gaji_pokok') is-invalid @enderror" name="gaji_pokok"
-                        value="{{ old('gaji_pokok', auth()->user()->gaji_pokok) }}" readonly />
-                    @error('gaji_pokok')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Makan & Transport</label>
-                    <input type="text" class="money @error('makan_transport') is-invalid @enderror"
-                        name="makan_transport" value="{{ old('makan_transport', auth()->user()->makan_transport) }}"
-                        readonly />
-                    @error('makan_transport')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Lembur</label>
-                    <input type="text" class="money @error('lembur') is-invalid @enderror" name="lembur"
-                        value="{{ old('lembur', auth()->user()->lembur) }}" readonly />
-                    @error('lembur')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>100% Kehadiran</label>
-                    <input type="text" class="money @error('kehadiran') is-invalid @enderror" name="kehadiran"
-                        value="{{ old('kehadiran', auth()->user()->kehadiran) }}" readonly />
-                    @error('kehadiran')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>THR</label>
-                    <input type="text" class="money @error('thr') is-invalid @enderror" name="thr"
-                        value="{{ old('thr', auth()->user()->thr) }}" readonly />
-                    @error('thr')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Bonus</label>
-                    <input type="text" class="money @error('bonus') is-invalid @enderror" name="bonus"
-                        value="{{ old('bonus', auth()->user()->bonus) }}" readonly />
-                    @error('bonus')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <h3>Pengurangan Gaji</h3>
-                <br>
-                <div class="group-input">
-                    <label>Izin</label>
-                    <input type="text" class="money @error('izin') is-invalid @enderror" name="izin"
-                        value="{{ old('izin', auth()->user()->izin) }}" readonly />/
-                    @error('izin')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Terlambat</label>
-                    <input type="text" class="money @error('terlambat') is-invalid @enderror" name="terlambat"
-                        value="{{ old('terlambat', auth()->user()->terlambat) }}" readonly />
-                    @error('terlambat')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Mangkir</label>
-                    <input type="text" class="money @error('mangkir') is-invalid @enderror" name="mangkir"
-                        value="{{ old('mangkir', auth()->user()->mangkir) }}" readonly />
-                    @error('mangkir')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Saldo Kasbon</label>
-                    <input type="text" class="money @error('saldo_kasbon') is-invalid @enderror" name="saldo_kasbon"
-                        value="{{ old('saldo_kasbon', auth()->user()->saldo_kasbon) }}" readonly />
-                    @error('saldo_kasbon')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
