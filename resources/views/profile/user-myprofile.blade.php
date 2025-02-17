@@ -28,9 +28,14 @@
                 <h3>Informasi Pengguna</h3>
                 <br>
                 <div class="group-input">
+<<<<<<< HEAD
+                    <label>Nama Pengguna</label>
+                    <input type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name', auth()->user()->name) }}" />
+=======
                     <label>Username</label>
                     <input type="text" class="@error('name') is-invalid @enderror" name="name"
                         value="{{ old('name', auth()->user()->name) }}" />
+>>>>>>> d48811abbccfd6c2d39f414759253f74c72066c9
                     @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
