@@ -49,6 +49,7 @@
                     @if (Auth::user()->img)
                         <input type="hidden" name="img" value="{{ Auth::user()->img }}">
                     @endif
+                    
                 </div>
                 <div class="group-input">
                     <label>Email</label>
@@ -136,7 +137,7 @@
                         </div>
                     @enderror
                 </div>
-                <h3>Cuti & Izin</h3>
+                {{-- <h3>Cuti & Izin</h3>
                 <br>
                 <div class="group-input">
                     <label>Cuti</label>
@@ -177,7 +178,7 @@
                             {{ $message }}
                         </div>
                     @enderror
-                </div>
+                </div> --}}
 
                 <button type="submit" class="tf-btn accent large">Save</button>
             </div>

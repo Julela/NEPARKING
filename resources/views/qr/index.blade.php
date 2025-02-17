@@ -91,7 +91,7 @@
             let qr = new QRious({
                 element: qrCanvas,
                 value: qrText.value,
-                size: 350 // Ukuran QR Code yang lebih kecil agar tidak terlalu besar
+                size: 250 // Ukuran QR Code yang lebih kecil agar tidak terlalu besar
             });
 
             imgBox.classList.add("show-img");

@@ -6,12 +6,12 @@
             <div class="balance">
                 <div class="row">
                     <div class="col-6 br-right">
-                        <p>Hai, {{ auth()->user()->name }}</p>
+                        <p>Hai, {{ auth()->check() ? auth()->user()->name : 'User' }}</p>
                         <div class="inner-left">
                             {{-- <p>{{ $shift_karyawan->Shift->nama_shift ?? '-' }}</p> --}}
-                            {{-- <h4>{{ auth()->user()->Lokasi->nama_lokasi }}</h4> --}}
+                            {{-- <h4>{{ auth()->user()->Lokasi->nama_lokasi ?? '-' }}</h4> --}}
                         </div>
-                    </div>
+                    </div>                    
                     <div class="col-6">
                         <div class="inner-right">
                             <p>NEPARKING</p>
