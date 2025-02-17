@@ -6,7 +6,7 @@
             <div class="balance">
                 <div class="row">
                     <div class="col-6 br-right">
-                        <p>Hai, User!</p>
+                        <p>Hai, {{ auth()->user()->name }}</p>
                         <div class="inner-left">
                             {{-- <p>{{ $shift_karyawan->Shift->nama_shift ?? '-' }}</p> --}}
                             {{-- <h4>{{ auth()->user()->Lokasi->nama_lokasi }}</h4> --}}
