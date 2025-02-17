@@ -110,6 +110,7 @@
                 <div class="tf-topbar d-flex justify-content-center align-items-center">
                     <a href="#" class="back-btn">
                         <!-- <i class="icon-left white_color"></i> -->
+                        <img src="{{ asset('img/smkn1.png') }}" style="width: 20%; margin-top:30px;" alt="">
                     </a>
                     {{-- <h3 class="white_color">{{ $title }}</h3> --}}
                 </div>

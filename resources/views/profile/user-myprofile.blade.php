@@ -23,10 +23,10 @@
             @method('PUT')
             @csrf
             <div class="tf-container">
-                <h3>Informasi Pegawai</h3>
+                <h3>Informasi Pengguna</h3>
                 <br>
                 <div class="group-input">
-                    <label>Nama Pegawai</label>
+                    <label>Nama Pengguna</label>
                     <input type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name', auth()->user()->name) }}" />
                     @error('name')
                         <div class="invalid-feedback">
