@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('qr_code', 255)->nullable();
             $table->string('plat_number', 255)->nullable();
             $table->string('class', 255)->nullable();
+            $table->string('address', 255)->nullable();
             $table->string('img', 255)->nullable();
             $table->boolean('gender')->default(1)->comment('1 = Laki-laki, 0 = Perempuan');
           

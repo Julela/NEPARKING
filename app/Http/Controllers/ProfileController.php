@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+
 
 class ProfileController extends Controller
 {
@@ -28,21 +30,84 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+
+    public function update(Request $request, $id)
     {
-        $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // dd($request->all());
+    
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'gender' => 'required|boolean',
+            'class_id' => 'required|exists:classes,id', 
+            'address' => 'required|string|max:255',
+
+        ]);
+    
+        $user = User::findOrFail($id);
+    
+        // Upload Image jika ada
+        if ($request->hasFile('img')) {
+            if ($user->img && file_exists(public_path('img/' . $user->img))) {
+                unlink(public_path('img/' . $user->img));
+            }
+    
+            $image = $request->file('img');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('img'), $imageName);
+        } else {
+            $imageName = $user->img;
         }
-
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+    
+        // Update Data
+        $user->update([
+            'name' => $request->name,
+            'img' => $imageName,
+            'email' => $request->email,
+            'gender' => (int) $request->gender,
+            'class_id' => $request->class, 
+            'address' => $request->address, 
+        ]);
+    
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
     }
+    
+
+    public function store(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        'email' => 'required|email|unique:users,email',
+        'gender' => 'required|boolean',
+        'class_id' => 'required|exists:classes,id',
+        'address' => 'required|string|max:255',
+    ]);
+
+    $imageName = null;
+    if ($request->hasFile('img')) {
+        $image = $request->file('img');
+        $imageName = time() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('img'), $imageName);
+    }
+
+    User::create([
+        'name' => $request->name,
+        'img' => $imageName,
+        'email' => $request->email,
+        'gender' => (int) $request->gender,
+        'class_id' => $request->class_id,
+        'address' => $request->address,
+        'password' => bcrypt('password123'), // Set password default
+    ]);
+
+    return redirect()->route('profile.edit')->with('success', 'User berhasil dibuat!');
+}
+
+
+
 
     /**
      * Delete the user's account.

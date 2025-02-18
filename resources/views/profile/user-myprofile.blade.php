@@ -8,34 +8,29 @@
                         @if (auth()->user()->img == null)
                             <img src="{{ asset('img/profile.jpg') }}" alt="profile">
                         @else
-                            <img src="{{ url('/storage/' . auth()->user()->img) }}" alt="image">
+                            <img src="{{ asset('img/' . auth()->user()->img) }}" alt="image">
                         @endif
                         <p class="fw_7 on_surface_color">{{ auth()->user()->name }}</p>
                     </div>
-                    {{-- <p class="fw_7 on_surface_color">{{ auth()->user()->Jabatan->nama_jabatan }}</p> --}}
                 </div>
+                
             </div>
         </div>
     </div>
     <br>
     <div class="tf-spacing-20"></div>
     <div class="transfer-content">
-        <form class="tf-form" action="{{ url('/my-profile/update/' . auth()->user()->id) }}" enctype="multipart/form-data"
+        <form class="tf-form" action="{{ route('profile.update', auth()->user()->id) }}" enctype="multipart/form-data"
             method="POST">
-            @method('PUT')
+            {{-- @method('PUT') --}}
             @csrf
             <div class="tf-container">
                 <h3>Informasi Pengguna</h3>
                 <br>
                 <div class="group-input">
-<<<<<<< HEAD
-                    <label>Nama Pengguna</label>
-                    <input type="text" class="@error('name') is-invalid @enderror" name="name" value="{{ old('name', auth()->user()->name) }}" />
-=======
                     <label>Username</label>
                     <input type="text" class="@error('name') is-invalid @enderror" name="name"
-                        value="{{ old('name', auth()->user()->name) }}" />
->>>>>>> d48811abbccfd6c2d39f414759253f74c72066c9
+                        value="{{ old('name', auth()->user()->name) }}" required/>
                     @error('name')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -51,15 +46,12 @@
                         </div>
                     @enderror
 
-                    @if (Auth::user()->img)
-                        <input type="hidden" name="img" value="{{ Auth::user()->img }}">
-                    @endif
-                    
+
                 </div>
                 <div class="group-input">
                     <label>Email</label>
                     <input type="email" class="@error('email') is-invalid @enderror" name="email"
-                        value="{{ old('email', auth()->user()->email) }}" />
+                        value="{{ old('email', auth()->user()->email) }}" required/>
                     @error('email')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -67,124 +59,50 @@
                     @enderror
                 </div>
                 <div class="group-input">
-                    @php
-                        $gender = [
-                            [
-                                'gender' => 'Laki-Laki',
-                            ],
-                            [
-                                'gender' => 'Perempuan',
-                            ],
-                        ];
-                    @endphp
                     <label style="z-index: 1000">Gender</label>
-                    <select name="gender" id="gender" class="form-select">
-                        <option value="">- - Pilih - -</option>
-                        @foreach ($gender as $g)
-                            @if (old('gender', auth()->user()->gender) == $g['gender'])
-                                <option value="{{ $g['gender'] }}" selected>{{ $g['gender'] }}</option>
-                            @else
-                                <option value="{{ $g['gender'] }}">{{ $g['gender'] }}</option>
-                            @endif
-                        @endforeach
+                    <select name="gender" id="gender" class="form-select" required>
+                        <option value="" disabled selected>- - Pilih - -</option>
+                        <option value="1" {{ old('gender', auth()->user()->gender) == 1 ? 'selected' : '' }}>Laki-Laki</option>
+                        <option value="0" {{ old('gender', auth()->user()->gender) == 0 ? 'selected' : '' }}>Perempuan</option>
                     </select>
-                    @error('tgl_lahir')
+                    @error('gender')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
+                @php
+                    use App\Models\Classes;
+                    $classes = Classes::all();
+                @endphp
 
                 <div class="group-input">
-                    @php
-                        $status_nikah = [
-                            [
-                                'status_nikah' => 'Menikah',
-                            ],
-                            [
-                                'status_nikah' => 'Lajang',
-                            ],
-                        ];
-                    @endphp
                     <label style="z-index: 1000">Kelas</label>
-                    <select name="status_nikah" id="status_nikah" class="form-select">
-                        <option value="">- - Pilih - -</option>
-                        @foreach ($status_nikah as $sn)
-                            @if (old('status_nikah', auth()->user()->status_nikah) == $sn['status_nikah'])
-                                <option value="{{ $sn['status_nikah'] }}" selected>{{ $sn['status_nikah'] }}</option>
-                            @else
-                                <option value="{{ $sn['status_nikah'] }}">{{ $sn['status_nikah'] }}</option>
-                            @endif
+                    <select name="class_id" id="class_id" class="form-select" required>
+                        <option value="" disabled selected>- - Pilih - -</option>
+                        @foreach ($classes as $class)
+                            <option value="{{ $class->id }}"
+                                {{ old('class_id', auth()->user()->class_id) == $class->id ? 'selected' : '' }}>
+                                {{ $class->class_name }}
+                            </option>
                         @endforeach
                     </select>
-                    @error('tgl_lahir')
+                    @error('class_id')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-                <div class="group-input">
-                    <label>Rekening</label>
-                    <input type="number" class="@error('rekening') is-invalid @enderror" name="rekening"
-                        value="{{ old('rekening', auth()->user()->rekening) }}" />
-                    @error('rekening')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Alamat</label>
-                    <textarea name="alamat" class="@error('alamat') is-invalid @enderror">{{ old('alamat', auth()->user()->alamat) }}</textarea>
-                    @error('alamat')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                {{-- <h3>Cuti & Izin</h3>
-                <br>
-                <div class="group-input">
-                    <label>Cuti</label>
-                    <input type="number" class="@error('izin_cuti') is-invalid @enderror" name="izin_cuti"
-                        value="{{ old('izin_cuti', auth()->user()->izin_cuti) }}" readonly />
-                    @error('izin_cuti')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Izin Masuk</label>
-                    <input type="number" class="@error('izin_lainnya') is-invalid @enderror" name="izin_lainnya"
-                        value="{{ old('izin_lainnya', auth()->user()->izin_lainnya) }}" readonly />
-                    @error('izin_lainnya')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Izin Telat</label>
-                    <input type="number" class="@error('izin_telat') is-invalid @enderror" name="izin_telat"
-                        value="{{ old('izin_telat', auth()->user()->izin_telat) }}" readonly />
-                    @error('izin_telat')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div>
-                <div class="group-input">
-                    <label>Izin Pulang Cepat</label>
-                    <input type="number" class="@error('izin_pulang_cepat') is-invalid @enderror" name="izin_pulang_cepat"
-                        value="{{ old('izin_pulang_cepat', auth()->user()->izin_pulang_cepat) }}" readonly />
-                    @error('izin_pulang_cepat')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </div> --}}
 
+                <div class="group-input" >
+                    <label>Alamat</label>
+                    <textarea name="address" class="@error('address') is-invalid @enderror" required>{{ old('address', auth()->user()->address) }}</textarea>
+                    @error('address')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
                 <button type="submit" class="tf-btn accent large">Save</button>
             </div>
             <br>
