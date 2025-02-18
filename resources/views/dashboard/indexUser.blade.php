@@ -108,7 +108,7 @@
                         </svg>
 
                     </div>
-                    Qr code
+                    Qr Code
                 </a>
             </li>
             <li>
