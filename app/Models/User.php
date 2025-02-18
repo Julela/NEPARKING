@@ -25,6 +25,11 @@ class User extends Authenticatable
         'google_token',
         'google_refresh_token',
         'img',
+        'class',
+        'gender',
+        'address',
+        'location',
+
     ];
 
 
@@ -50,4 +55,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function class()
+    {
+        return $this->belongsTo(Classes::class, 'class_id'); 
+    }
+
+
+
+   
 }
