@@ -45,8 +45,6 @@
                             {{ $message }}
                         </div>
                     @enderror
-
-
                 </div>
                 <div class="group-input">
                     <label>Email</label>
@@ -58,7 +56,7 @@
                         </div>
                     @enderror
                 </div>
-                <div class="group-input">
+                <div class="group-input w-80 max-auto" >
                     <label style="z-index: 1000">Gender</label>
                     <select name="gender" id="gender" class="form-select" required>
                         <option value="" disabled selected>- - Pilih - -</option>
