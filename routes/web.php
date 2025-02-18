@@ -8,6 +8,20 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\QrController;
+use App\Http\Controllers\CutiController;
+use App\Http\Controllers\NotifikasiController;
+
+
+//Notif
+Route::get('/my-notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
+
+
+//Izin/Sakit
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cuti', [CutiController::class, 'index'])->name('cuti.index'); // Tampilkan form izin
+    Route::post('/cuti', [CutiController::class, 'store'])->name('cuti.store'); // Simpan izin ke database
+});
+
 
 
 //Data kendaraan
