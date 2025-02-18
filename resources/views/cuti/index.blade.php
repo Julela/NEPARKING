@@ -1,8 +1,18 @@
 @extends('templates.app')
 
 @section('container')
+<div class="card-secton transfer-section">
+    <div class="tf-container">
+        <div class="tf-balance-box">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="text-2xl font-bold text-gray-200 mb-4">Ajukan Izin/Cuti</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
 <div class="container">
-    <h2>Ajukan Izin / Cuti</h2>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

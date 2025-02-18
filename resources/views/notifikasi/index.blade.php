@@ -1,8 +1,22 @@
 @extends('templates.app')
 
 @section('container')
+
+<div class="card-secton transfer-section">
+    <div class="tf-container">
+        <div class="tf-balance-box">
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="text-2xl font-bold text-gray-200 mb-4"> Notifikasi </h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
 <div class="container">
-    <h2 class="text-center">Notifikasi</h2>
+    
 
     @if ($notifikasis->isEmpty())
         <p class="text-center">Belum ada notifikasi.</p>

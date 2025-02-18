@@ -5,7 +5,7 @@
     <div class="tf-container">
         <div class="tf-balance-box">
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="text-2xl font-bold text-gray-200 mb-4"> <img src="" alt="">Kendaraan Saya</h2>
+                <h2 class="text-2xl font-bold text-gray-200 mb-4">Kendaraan Saya</h2>
 
                 <a href="{{ route('kendaraan.create') }}" class="bg-blue-900 hover:bg-blue-600 text-black px-4 py-2 rounded-lg mb-4 inline-block shadow-md transition">
                     ➕ Tambah Kendaraan
