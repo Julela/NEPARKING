@@ -29,7 +29,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        // return redirect()->intended(route('home', absolute: false));
+
+         if ($request->has('redirect')) {
+            return redirect($request->input('redirect'));
+        }
+
+        
+        if (Auth::user()->hasRole('admin')) {
+            return redirect()->route('admin.admin.page');
+        }
+
+        if (Auth::user()->hasRole('teacher')) {
+            return redirect()->route('teacher.teacher.page');
+        }
+
         return redirect('/');
     }
 

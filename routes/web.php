@@ -12,6 +12,17 @@ use App\Http\Controllers\CutiController;
 use App\Http\Controllers\NotifikasiController;
 
 
+// ROUTE ADMIN  PAGE
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/admin', function () {
+        return view('dashboard.index');
+    })->name('admin.page')->middleware('permission:main-admin');
+
+});
+
+
 //Notif
 Route::get('/my-notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
 
@@ -44,9 +55,6 @@ Route::get('/', function () {
     return view('dashboard.indexUser');
 })->name('home');
 
-Route::get('/admin', function () {
-    return view('dashboard.index');
-})->name('home');
 
 //ROUTE LOGIN REGIS MASIH PAKE YANG INI
 Route::get('/dashboard', function () {
