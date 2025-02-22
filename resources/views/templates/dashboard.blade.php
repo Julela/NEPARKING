@@ -128,9 +128,13 @@
         <div class="page-body-wrapper">
             <div class="sidebar-wrapper">
                 <div>
-                    <div class="logo-wrapper"><a href="{{ url('/dashboard') }}"><img class="img-fluid for-light"
-                                src="{{ url('img/smkn1.png') }}" alt=""></a>
-                        <div class="back-btn"><i class="fa fa-angle-left"></i></div>
+                    <div class="logo-wrapper">
+                      <a href="{{ url('/dashboard') }}">
+                      <img class="img-fluid for-light" style="width: 20%" src="{{ url('img/smkn1.png') }}" alt=""></a> 
+
+                        
+                        {{-- <div class="back-btn"><i class="fa fa-angle-left"></i></div> --}}
+                        <div ><h5 style="color: white; text-align: center; top: 10px;">Dashboard</h5></div>
                         <div class="toggle-sidebar"><i class="fa fa-cog status_toggle middle sidebar-toggle"> </i>
                         </div>
                     </div>

@@ -70,7 +70,7 @@
             <div class="grid md:grid-cols-2 items-center gap-8">
                 <div class="max-md:order-1">
                     <!-- <img src="{{ asset('img/smkn1.png') }}" style="width: 20%; top: 20px;" alt=""> -->
-                    <img src="{{ asset('img/loginpage.svg') }}" class="w-full aspect-[12/11] object-contain"
+                    <img src="{{ asset('img/loginpage.svg') }}" style="border-radius: 5px;" class="w-80 aspect-[12/11] object-contain"
                         alt="login-image" />
                 </div> 
 

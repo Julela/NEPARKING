@@ -57,9 +57,9 @@ Route::get('/', function () {
 
 
 //ROUTE LOGIN REGIS MASIH PAKE YANG INI
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])->middleware('guest');
 
