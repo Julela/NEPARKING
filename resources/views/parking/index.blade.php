@@ -1,21 +1,134 @@
 @extends('templates.app')
 
 @section('container')
-
-<div class="card-secton transfer-section">
+<div class="card-secton transfer-section"> 
     <div class="tf-container">
         <div class="tf-balance-box">
             <div class="d-flex justify-content-between align-items-center">
-
                 <h2 class="text-lg font-semibold mb-4">🅿 Pilih Tempat Parkir</h2>
-
-
             </div>
         </div>
     </div>
 </div>
+
+@if(session('success'))
+    <div class="alert alert-success">{{ session('success') }}</div>
+@endif
+
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
+
+<!-- Grid Slot Parkir -->
+<div class="parking-lot">
+    @foreach($slots as $slot)
+        <form method="POST" action="{{ $slot->is_booked && $slot->user_id == auth()->id() ? route('parkir.cancel') : route('parkir.book') }}">
+            @csrf
+            <input type="hidden" name="slot_number" value="{{ $slot->slot_number }}">
+            <button type="submit" 
+                class="slot {{ $slot->is_booked ? ($slot->user_id == auth()->id() ? 'booked-by-user' : 'booked') : 'available' }}">
+                {{ $slot->slot_number }}
+            </button>
+        </form>
+    @endforeach
+</div>
+
+<style>
+    /* Grid Responsif */
+    .parking-lot {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 10px;
+        justify-content: center;
+        padding: 20px;
+        max-width: 500px;
+        margin: auto;
+    }
+
+    /* Tombol Slot Parkir */
+    .slot {
+        width: 100%;
+        max-width: 70px;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Warna Slot */
+    .available {
+        background-color: green;
+        color: white;
+    }
+
+    .booked {
+        background-color: red;
+        color: white;
+        pointer-events: none; /* Tidak bisa diklik jika sudah dipesan oleh user lain */
+    }
+
+    .booked-by-user {
+        background-color: orange;
+        color: white;
+    }
+
+    /* Media Queries untuk responsif */
+    @media (max-width: 600px) {
+        .parking-lot {
+            max-width: 50px;
+            font-size: 0.75rem;
+        }
+    }
+</style>
+
+<!-- <style>
     
-    @if(session('success'))
+
+    .parking-lot {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        /* 5 slot per baris */
+        gap: 6px;
+    }
+
+    .slot {
+        width: 100%;
+        max-width: 70px;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid black;
+        font-size: 0.875rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .available {
+        background-color: #86efac;
+        /* Hijau muda */
+    }
+
+    .occupied {
+        background-color: red !important;
+        pointer-events: none;
+    }
+
+    @media (max-width: 600px) {
+        .parking-lot {
+            max-width: 50px;
+            font-size: 0.75rem;
+        }
+    }
+    
+</style>  -->
+
+
+    <!-- @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     
@@ -33,10 +146,10 @@
                 </button>
             </form>
         @endforeach
-    </div>
+    </div> 
 
 
-<style>
+ <style>
     .parking-lot {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -63,6 +176,7 @@
         background-color: red !important;
     }
 </style>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".slot").forEach(button => {
@@ -78,7 +192,7 @@
             });
         });
     });
-</script>
+</script> -->
 
 
 
@@ -180,76 +294,7 @@
         });
     });
 </script>
-
-<style>
-    /* .parking-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr); 
-        gap: 6px;
-    }
-
-    .parking-slot {
-        width: 100%;
-        max-width: 70px;
-        aspect-ratio: 1/1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid black;
-        font-size: 0.875rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    @media (max-width: 600px) {
-        .parking-slot {
-            max-width: 50px;
-            font-size: 0.75rem;
-        }
-    }
-
-    .occupied {
-        background-color: red !important;
-        pointer-events: none;
-    } */
-
-    .parking-grid {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        /* 5 slot per baris */
-        gap: 6px;
-    }
-
-    .parking-slot {
-        width: 100%;
-        max-width: 70px;
-        aspect-ratio: 1/1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 2px solid black;
-        font-size: 0.875rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .available {
-        background-color: #86efac;
-        /* Hijau muda */
-    }
-
-    .occupied {
-        background-color: red !important;
-        pointer-events: none;
-    }
-
-    @media (max-width: 600px) {
-        .parking-slot {
-            max-width: 50px;
-            font-size: 0.75rem;
-        }
-    }
-</style> -->
+-->
 
 
 @endsection

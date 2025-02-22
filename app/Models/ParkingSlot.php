@@ -10,4 +10,8 @@ class ParkingSlot extends Model
     use HasFactory;
 
     protected $fillable = ['slot_number', 'is_booked', 'user_id']; 
+
+    protected $casts = [
+        'is_booked' => 'boolean',
+    ];
 }

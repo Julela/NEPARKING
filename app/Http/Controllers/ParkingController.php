@@ -29,18 +29,21 @@ class ParkingController extends Controller
 
     public function book(Request $request)
     {
+        // Cek apakah user sudah memiliki slot
         $existingBooking = ParkingSlot::where('user_id', auth()->id())->first();
 
         if ($existingBooking) {
             return redirect()->back()->with('error', 'Anda hanya bisa memilih satu slot parkir!');
         }
 
+        // Cari slot berdasarkan nomor
         $slot = ParkingSlot::where('slot_number', $request->slot_number)->first();
 
         if (!$slot || $slot->is_booked) {
             return redirect()->back()->with('error', 'Slot sudah terisi!');
         }
 
+        // Tandai slot sebagai dipesan oleh user
         $slot->update([
             'is_booked' => true,
             'user_id' => auth()->id()
@@ -53,10 +56,17 @@ class ParkingController extends Controller
 
     public function cancel(Request $request)
     {
-        $slot = ParkingSlot::where('slot_number', $request->slot_number)->first();
+        // Cek apakah user membatalkan slot yang dia pesan
+        $slot = ParkingSlot::where('slot_number', $request->slot_number)
+            ->where('user_id', auth()->id()) // Pastikan hanya user terkait yang bisa membatalkan
+            ->first();
 
-        if ($slot && $slot->is_booked) {
-            $slot->update(['is_booked' => false]);
+        if ($slot) {
+            $slot->update([
+                'is_booked' => false,
+                'user_id' => null
+            ]);
+
             return redirect()->back()->with('success', 'Pemesanan berhasil dibatalkan.');
         }
 
