@@ -22,29 +22,45 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
+
     public function store(LoginRequest $request): RedirectResponse
     {
-        // dd($request);
-        $request->authenticate();
+        try {
+            $request->authenticate();
+            $request->session()->regenerate();
 
-        $request->session()->regenerate();
+            // Simpan nama user dalam session
+            session()->flash('welcome_back', 'Hai, ' . Auth::user()->name.'.');
 
+            if ($request->has('redirect')) {
+                return redirect($request->input('redirect'))->with('success', 'Login berhasil!');
+            }
 
-         if ($request->has('redirect')) {
-            return redirect($request->input('redirect'));
+            if (Auth::user()->hasRole('admin')) {
+                return redirect()->route('admin.admin.page')->with('success', 'Login berhasil sebagai Admin!');
+            }
+
+            if (Auth::user()->hasRole('teacher')) {
+                return redirect()->route('teacher.teacher.page')->with('success', 'Login berhasil sebagai Guru!');
+            }
+
+            return redirect('/')->with('success', 'Login berhasil!');
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            $errors = $e->validator->errors();
+
+            if ($errors->has('email')) {
+                return back()->with('email_error', $errors->first('email'));
+            }
+
+            if ($errors->has('password')) {
+                return back()->with('password_error', $errors->first('password'));
+            }
+
+            return back();
         }
-
-        
-        if (Auth::user()->hasRole('admin')) {
-            return redirect()->route('admin.admin.page');
-        }
-
-        if (Auth::user()->hasRole('teacher')) {
-            return redirect()->route('teacher.teacher.page');
-        }
-
-        return redirect('/');
     }
+
+
 
     /**
      * Destroy an authenticated session.

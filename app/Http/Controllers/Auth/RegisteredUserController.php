@@ -27,51 +27,33 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    // public function store(Request $request): RedirectResponse
-    // {
-    //     // dd($request);
-    //     $request->validate([
-    //         'name' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
-    //     ]);
-
-    //     $user = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //     ]);
-
-    //     event(new Registered($user));
-
-    //     Auth::login($user);
-
-    //     return redirect('/');
-    // }
-
     public function store(Request $request): RedirectResponse
-{
-    // Validasi panjang password
-    if (strlen($request->password) < 8) {
-        return redirect()->back()->with('error', 'Password harus memiliki minimal 8 karakter!');
+    {
+        // Validasi panjang password
+        if (strlen($request->password) < 8) {
+            return redirect()->back()->with('error', 'Password harus memiliki minimal 8 karakter!');
+        }
+
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'email.unique' => 'Email sudah digunakan.', 
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        event(new Registered($user));
+        Auth::login($user);
+
+        // Simpan session selamat datang
+        session()->flash('welcome', 'Hai, ' . $user->name );
+
+        return redirect('/');
     }
-
-    $request->validate([
-        'name' => ['required', 'string', 'max:255'],
-        'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-        'password' => ['required', 'confirmed', Rules\Password::defaults()],
-    ]);
-
-    $user = User::create([
-        'name' => $request->name,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
-
-    event(new Registered($user));
-    Auth::login($user);
-
-    return redirect('/');
-}
-
 }
