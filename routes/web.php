@@ -18,6 +18,16 @@ Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index')
 Route::post('/parkir/book', [ParkingController::class, 'book'])->name('parkir.book');
 Route::post('/parkir/cancel', [ParkingController::class, 'cancel'])->name('parkir.cancel');
 
+// ROUTE ADMIN  PAGE
+
+Route::prefix('admin')->name('admin.')->group(function () {
+
+    Route::get('/admin', function () {
+        return view('dashboard.index');
+    })->name('admin.page')->middleware('permission:main-admin');
+
+});
+
 //Notif
 Route::get('/my-notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
 
@@ -49,9 +59,6 @@ Route::get('/', function () {
     return view('dashboard.indexUser');
 })->name('home');
 
-Route::get('/admin', function () {
-    return view('dashboard.index');
-})->name('home');
 
 //ROUTE LOGIN REGIS MASIH PAKE YANG INI
 Route::get('/dashboard', function () {
