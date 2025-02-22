@@ -10,11 +10,16 @@ use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\QrController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\ParkingController;
 
+
+//parkir
+Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');
+Route::post('/parkir/book', [ParkingController::class, 'book'])->name('parkir.book');
+Route::post('/parkir/cancel', [ParkingController::class, 'cancel'])->name('parkir.cancel');
 
 //Notif
 Route::get('/my-notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
-
 
 //Izin/Sakit
 Route::middleware(['auth'])->group(function () {
