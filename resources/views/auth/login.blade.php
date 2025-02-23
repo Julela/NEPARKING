@@ -54,6 +54,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
@@ -70,9 +71,9 @@
             <div class="grid md:grid-cols-2 items-center gap-8">
                 <div class="max-md:order-1">
                     <!-- <img src="{{ asset('img/smkn1.png') }}" style="width: 20%; top: 20px;" alt=""> -->
-                    <img src="{{ asset('img/loginpage.svg') }}" class="w-full aspect-[12/11] object-contain"
-                        alt="login-image" />
-                </div> 
+                    <img src="{{ asset('img/loginpage.svg') }}" style="border-radius: 5px;"
+                        class="w-80 aspect-[12/11] object-contain" alt="login-image" />
+                </div>
 
                 <form class="md:max-w-md w-full mx-auto" method="POST" action="/login">
                     @csrf
@@ -155,6 +156,48 @@
             </div>
         </div>
     </div>
+
+    @if (session('email_error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Email yang anda isi tidak terdaftar!',
+                text: "{{ session('email_error') }}",
+            });
+        </script>
+    @endif
+
+    @if (session('password_error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Password yang anda isi salah!',
+                text: "{{ session('password_error') }}",
+            });
+        </script>
+    @endif
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+            });
+        </script>
+    @endif
+
+    @if (session('welcome_back'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat Datang Kembali!',
+                text: "{{ session('welcome_back') }}",
+            });
+        </script>
+    @endif
+
+
 </body>
 
 </html>

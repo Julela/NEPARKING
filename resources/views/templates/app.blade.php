@@ -36,6 +36,7 @@
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
     <link rel="stylesheet" type="text/css" href="{{ url('clock/dist/bootstrap-clockpicker.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .select2-container .select2-selection--single {
             height: 45px;
@@ -67,43 +68,43 @@
     </div>
 
     @if (Request::is('dashboard*'))
-    <div class="app-header">
-        <div class="tf-container">
+        <div class="app-header">
+            <div class="tf-container">
 
-            <div class="tf-topbar d-flex justify-content-between align-items-center">
-                <a class="user-info d-flex justify-content-between align-items-center"
-                    href="{{ url('/my-profile') }}">
-                    @if (auth()->user()->foto_karyawan == null)
-                    <img src="{{ url('assets/img/foto_default.jpg') }}" alt="image">
-                    @else
-                    <img src="{{ url('/storage/' . auth()->user()->foto_karyawan) }}" alt="image">
-                    @endif
-
-                    <div class="content">
-                        <h4 class="white_color">{{ auth()->user()->name }}</h4>
-                        <p class="white_color fw_4">{{ auth()->user()->Jabatan->nama_jabatan }}</p>
-                    </div>
-                </a>
-                <div class="d-flex align-items-center gap-4">
-                    <a href="javascript:void(0);" id="btn-popup-left">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                            fill="none">
-                            <path
-                                d="M7.25687 5.89462C8.06884 5.35208 9.02346 5.0625 10 5.0625C11.3095 5.0625 12.5654 5.5827 13.4913 6.50866C14.4173 7.43462 14.9375 8.6905 14.9375 10C14.9375 10.9765 14.6479 11.9312 14.1054 12.7431C13.5628 13.5551 12.7917 14.188 11.8895 14.5617C10.9873 14.9354 9.99452 15.0331 9.03674 14.8426C8.07896 14.6521 7.19918 14.1819 6.50866 13.4913C5.81814 12.8008 5.34789 11.921 5.15737 10.9633C4.96686 10.0055 5.06464 9.01271 5.43835 8.1105C5.81205 7.20829 6.44491 6.43716 7.25687 5.89462ZM8.29857 12.5464C8.80219 12.8829 9.3943 13.0625 10 13.0625C10.8122 13.0625 11.5912 12.7398 12.1655 12.1655C12.7398 11.5912 13.0625 10.8122 13.0625 10C13.0625 9.3943 12.8829 8.80219 12.5464 8.29857C12.2099 7.79494 11.7316 7.40241 11.172 7.17062C10.6124 6.93883 9.99661 6.87818 9.40254 6.99635C8.80847 7.11451 8.26279 7.40619 7.83449 7.83449C7.40619 8.26279 7.11451 8.80847 6.99635 9.40254C6.87818 9.99661 6.93883 10.6124 7.17062 11.172C7.40241 11.7316 7.79494 12.2099 8.29857 12.5464ZM24.7431 14.1054C23.9312 14.6479 22.9765 14.9375 22 14.9375C20.6905 14.9375 19.4346 14.4173 18.5087 13.4913C17.5827 12.5654 17.0625 11.3095 17.0625 10C17.0625 9.02346 17.3521 8.06884 17.8946 7.25687C18.4372 6.44491 19.2083 5.81205 20.1105 5.43835C21.0127 5.06464 22.0055 4.96686 22.9633 5.15737C23.921 5.34789 24.8008 5.81814 25.4913 6.50866C26.1819 7.19918 26.6521 8.07896 26.8426 9.03674C27.0331 9.99452 26.9354 10.9873 26.5617 11.8895C26.1879 12.7917 25.5551 13.5628 24.7431 14.1054ZM23.7014 7.45363C23.1978 7.11712 22.6057 6.9375 22 6.9375C21.1878 6.9375 20.4088 7.26016 19.8345 7.83449C19.2602 8.40882 18.9375 9.18778 18.9375 10C18.9375 10.6057 19.1171 11.1978 19.4536 11.7014C19.7901 12.2051 20.2684 12.5976 20.828 12.8294C21.3876 13.0612 22.0034 13.1218 22.5975 13.0037C23.1915 12.8855 23.7372 12.5938 24.1655 12.1655C24.5938 11.7372 24.8855 11.1915 25.0037 10.5975C25.1218 10.0034 25.0612 9.38763 24.8294 8.82803C24.5976 8.26844 24.2051 7.79014 23.7014 7.45363ZM7.25687 17.8946C8.06884 17.3521 9.02346 17.0625 10 17.0625C11.3095 17.0625 12.5654 17.5827 13.4913 18.5087C14.4173 19.4346 14.9375 20.6905 14.9375 22C14.9375 22.9765 14.6479 23.9312 14.1054 24.7431C13.5628 25.5551 12.7917 26.1879 11.8895 26.5617C10.9873 26.9354 9.99452 27.0331 9.03674 26.8426C8.07896 26.6521 7.19918 26.1819 6.50866 25.4913C5.81814 24.8008 5.34789 23.921 5.15737 22.9633C4.96686 22.0055 5.06464 21.0127 5.43835 20.1105C5.81205 19.2083 6.44491 18.4372 7.25687 17.8946ZM8.29857 24.5464C8.80219 24.8829 9.3943 25.0625 10 25.0625C10.8122 25.0625 11.5912 24.7398 12.1655 24.1655C12.7398 23.5912 13.0625 22.8122 13.0625 22C13.0625 21.3943 12.8829 20.8022 12.5464 20.2986C12.2099 19.7949 11.7316 19.4024 11.172 19.1706C10.6124 18.9388 9.99661 18.8782 9.40254 18.9963C8.80847 19.1145 8.26279 19.4062 7.83449 19.8345C7.40619 20.2628 7.11451 20.8085 6.99635 21.4025C6.87818 21.9966 6.93883 22.6124 7.17062 23.172C7.40241 23.7316 7.79494 24.2099 8.29857 24.5464ZM19.2569 17.8946C20.0688 17.3521 21.0235 17.0625 22 17.0625C23.3095 17.0625 24.5654 17.5827 25.4913 18.5087C26.4173 19.4346 26.9375 20.6905 26.9375 22C26.9375 22.9765 26.6479 23.9312 26.1054 24.7431C25.5628 25.5551 24.7917 26.1879 23.8895 26.5617C22.9873 26.9354 21.9945 27.0331 21.0367 26.8426C20.079 26.6521 19.1992 26.1819 18.5087 25.4913C17.8181 24.8008 17.3479 23.921 17.1574 22.9633C16.9669 22.0055 17.0646 21.0127 17.4383 20.1105C17.8121 19.2083 18.4449 18.4372 19.2569 17.8946ZM20.2986 24.5464C20.8022 24.8829 21.3943 25.0625 22 25.0625C22.8122 25.0625 23.5912 24.7398 24.1655 24.1655C24.7398 23.5912 25.0625 22.8122 25.0625 22C25.0625 21.3943 24.8829 20.8022 24.5464 20.2986C24.2099 19.7949 23.7316 19.4024 23.172 19.1706C22.6124 18.9388 21.9966 18.8782 21.4025 18.9963C20.8085 19.1145 20.2628 19.4062 19.8345 19.8345C19.4062 20.2628 19.1145 20.8085 18.9963 21.4025C18.8782 21.9966 18.9388 22.6124 19.1706 23.172C19.4024 23.7316 19.7949 24.2099 20.2986 24.5464Z"
-                                fill="white" stroke="white" stroke-width="0.125" />
-                        </svg>
-                    </a>
-                    <a href="{{ url('/notifications') }}" class="icon-notification1">
-                        @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
-                        <span>{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
+                <div class="tf-topbar d-flex justify-content-between align-items-center">
+                    <a class="user-info d-flex justify-content-between align-items-center"
+                        href="{{ url('/my-profile') }}">
+                        @if (auth()->user()->foto_karyawan == null)
+                            <img src="{{ url('assets/img/foto_default.jpg') }}" alt="image">
+                        @else
+                            <img src="{{ url('/storage/' . auth()->user()->foto_karyawan) }}" alt="image">
                         @endif
+
+                        <div class="content">
+                            <h4 class="white_color">{{ auth()->user()->name }}</h4>
+                            <p class="white_color fw_4">{{ auth()->user()->Jabatan->nama_jabatan }}</p>
+                        </div>
                     </a>
+                    <div class="d-flex align-items-center gap-4">
+                        <a href="javascript:void(0);" id="btn-popup-left">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+                                fill="none">
+                                <path
+                                    d="M7.25687 5.89462C8.06884 5.35208 9.02346 5.0625 10 5.0625C11.3095 5.0625 12.5654 5.5827 13.4913 6.50866C14.4173 7.43462 14.9375 8.6905 14.9375 10C14.9375 10.9765 14.6479 11.9312 14.1054 12.7431C13.5628 13.5551 12.7917 14.188 11.8895 14.5617C10.9873 14.9354 9.99452 15.0331 9.03674 14.8426C8.07896 14.6521 7.19918 14.1819 6.50866 13.4913C5.81814 12.8008 5.34789 11.921 5.15737 10.9633C4.96686 10.0055 5.06464 9.01271 5.43835 8.1105C5.81205 7.20829 6.44491 6.43716 7.25687 5.89462ZM8.29857 12.5464C8.80219 12.8829 9.3943 13.0625 10 13.0625C10.8122 13.0625 11.5912 12.7398 12.1655 12.1655C12.7398 11.5912 13.0625 10.8122 13.0625 10C13.0625 9.3943 12.8829 8.80219 12.5464 8.29857C12.2099 7.79494 11.7316 7.40241 11.172 7.17062C10.6124 6.93883 9.99661 6.87818 9.40254 6.99635C8.80847 7.11451 8.26279 7.40619 7.83449 7.83449C7.40619 8.26279 7.11451 8.80847 6.99635 9.40254C6.87818 9.99661 6.93883 10.6124 7.17062 11.172C7.40241 11.7316 7.79494 12.2099 8.29857 12.5464ZM24.7431 14.1054C23.9312 14.6479 22.9765 14.9375 22 14.9375C20.6905 14.9375 19.4346 14.4173 18.5087 13.4913C17.5827 12.5654 17.0625 11.3095 17.0625 10C17.0625 9.02346 17.3521 8.06884 17.8946 7.25687C18.4372 6.44491 19.2083 5.81205 20.1105 5.43835C21.0127 5.06464 22.0055 4.96686 22.9633 5.15737C23.921 5.34789 24.8008 5.81814 25.4913 6.50866C26.1819 7.19918 26.6521 8.07896 26.8426 9.03674C27.0331 9.99452 26.9354 10.9873 26.5617 11.8895C26.1879 12.7917 25.5551 13.5628 24.7431 14.1054ZM23.7014 7.45363C23.1978 7.11712 22.6057 6.9375 22 6.9375C21.1878 6.9375 20.4088 7.26016 19.8345 7.83449C19.2602 8.40882 18.9375 9.18778 18.9375 10C18.9375 10.6057 19.1171 11.1978 19.4536 11.7014C19.7901 12.2051 20.2684 12.5976 20.828 12.8294C21.3876 13.0612 22.0034 13.1218 22.5975 13.0037C23.1915 12.8855 23.7372 12.5938 24.1655 12.1655C24.5938 11.7372 24.8855 11.1915 25.0037 10.5975C25.1218 10.0034 25.0612 9.38763 24.8294 8.82803C24.5976 8.26844 24.2051 7.79014 23.7014 7.45363ZM7.25687 17.8946C8.06884 17.3521 9.02346 17.0625 10 17.0625C11.3095 17.0625 12.5654 17.5827 13.4913 18.5087C14.4173 19.4346 14.9375 20.6905 14.9375 22C14.9375 22.9765 14.6479 23.9312 14.1054 24.7431C13.5628 25.5551 12.7917 26.1879 11.8895 26.5617C10.9873 26.9354 9.99452 27.0331 9.03674 26.8426C8.07896 26.6521 7.19918 26.1819 6.50866 25.4913C5.81814 24.8008 5.34789 23.921 5.15737 22.9633C4.96686 22.0055 5.06464 21.0127 5.43835 20.1105C5.81205 19.2083 6.44491 18.4372 7.25687 17.8946ZM8.29857 24.5464C8.80219 24.8829 9.3943 25.0625 10 25.0625C10.8122 25.0625 11.5912 24.7398 12.1655 24.1655C12.7398 23.5912 13.0625 22.8122 13.0625 22C13.0625 21.3943 12.8829 20.8022 12.5464 20.2986C12.2099 19.7949 11.7316 19.4024 11.172 19.1706C10.6124 18.9388 9.99661 18.8782 9.40254 18.9963C8.80847 19.1145 8.26279 19.4062 7.83449 19.8345C7.40619 20.2628 7.11451 20.8085 6.99635 21.4025C6.87818 21.9966 6.93883 22.6124 7.17062 23.172C7.40241 23.7316 7.79494 24.2099 8.29857 24.5464ZM19.2569 17.8946C20.0688 17.3521 21.0235 17.0625 22 17.0625C23.3095 17.0625 24.5654 17.5827 25.4913 18.5087C26.4173 19.4346 26.9375 20.6905 26.9375 22C26.9375 22.9765 26.6479 23.9312 26.1054 24.7431C25.5628 25.5551 24.7917 26.1879 23.8895 26.5617C22.9873 26.9354 21.9945 27.0331 21.0367 26.8426C20.079 26.6521 19.1992 26.1819 18.5087 25.4913C17.8181 24.8008 17.3479 23.921 17.1574 22.9633C16.9669 22.0055 17.0646 21.0127 17.4383 20.1105C17.8121 19.2083 18.4449 18.4372 19.2569 17.8946ZM20.2986 24.5464C20.8022 24.8829 21.3943 25.0625 22 25.0625C22.8122 25.0625 23.5912 24.7398 24.1655 24.1655C24.7398 23.5912 25.0625 22.8122 25.0625 22C25.0625 21.3943 24.8829 20.8022 24.5464 20.2986C24.2099 19.7949 23.7316 19.4024 23.172 19.1706C22.6124 18.9388 21.9966 18.8782 21.4025 18.9963C20.8085 19.1145 20.2628 19.4062 19.8345 19.8345C19.4062 20.2628 19.1145 20.8085 18.9963 21.4025C18.8782 21.9966 18.9388 22.6124 19.1706 23.172C19.4024 23.7316 19.7949 24.2099 20.2986 24.5464Z"
+                                    fill="white" stroke="white" stroke-width="0.125" />
+                            </svg>
+                        </a>
+                        <a href="{{ url('/notifications') }}" class="icon-notification1">
+                            @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
+                                <span>{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
+                            @endif
+                        </a>
+                    </div>
                 </div>
+
+
             </div>
-
-
         </div>
-    </div>
     @else
         <div class="app-header st1">
             <div class="tf-container">
@@ -130,10 +131,10 @@
                         </div>
                     </div>
                 @else
-                    <div class="tf-topbar d-flex justify-content-end align-items-center">
+                    <div class="tf-topbar d-flex justify-content-end align-items-center login-alert">
                         <a href="{{ route('login') }}" class="d-flex align-items-center text-decoration-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
-                                fill="none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                viewBox="0 0 32 32" fill="none">
                                 <path
                                     d="M7.25687 5.89462C8.06884 5.35208 9.02346 5.0625 10 5.0625C11.3095 5.0625 12.5654 5.5827 13.4913 6.50866C14.4173 7.43462 14.9375 8.6905 14.9375 10C14.9375 10.9765 14.6479 11.9312 14.1054 12.7431C13.5628 13.5551 12.7917 14.188 11.8895 14.5617C10.9873 14.9354 9.99452 15.0331 9.03674 14.8426C8.07896 14.6521 7.19918 14.1819 6.50866 13.4913C5.81814 12.8008 5.34789 11.921 5.15737 10.9633C4.96686 10.0055 5.06464 9.01271 5.43835 8.1105C5.81205 7.20829 6.44491 6.43716 7.25687 5.89462ZM8.29857 12.5464C8.80219 12.8829 9.3943 13.0625 10 13.0625C10.8122 13.0625 11.5912 12.7398 12.1655 12.1655C12.7398 11.5912 13.0625 10.8122 13.0625 10C13.0625 9.3943 12.8829 8.80219 12.5464 8.29857C12.2099 7.79494 11.7316 7.40241 11.172 7.17062C10.6124 6.93883 9.99661 6.87818 9.40254 6.99635C8.80847 7.11451 8.26279 7.40619 7.83449 7.83449C7.40619 8.26279 7.11451 8.80847 6.99635 9.40254C6.87818 9.99661 6.93883 10.6124 7.17062 11.172C7.40241 11.7316 7.79494 12.2099 8.29857 12.5464ZM24.7431 14.1054C23.9312 14.6479 22.9765 14.9375 22 14.9375C20.6905 14.9375 19.4346 14.4173 18.5087 13.4913C17.5827 12.5654 17.0625 11.3095 17.0625 10C17.0625 9.02346 17.3521 8.06884 17.8946 7.25687C18.4372 6.44491 19.2083 5.81205 20.1105 5.43835C21.0127 5.06464 22.0055 4.96686 22.9633 5.15737C23.921 5.34789 24.8008 5.81814 25.4913 6.50866C26.1819 7.19918 26.6521 8.07896 26.8426 9.03674C27.0331 9.99452 26.9354 10.9873 26.5617 11.8895C26.1879 12.7917 25.5551 13.5628 24.7431 14.1054ZM23.7014 7.45363C23.1978 7.11712 22.6057 6.9375 22 6.9375C21.1878 6.9375 20.4088 7.26016 19.8345 7.83449C19.2602 8.40882 18.9375 9.18778 18.9375 10C18.9375 10.6057 19.1171 11.1978 19.4536 11.7014C19.7901 12.2051 20.2684 12.5976 20.828 12.8294C21.3876 13.0612 22.0034 13.1218 22.5975 13.0037C23.1915 12.8855 23.7372 12.5938 24.1655 12.1655C24.5938 11.7372 24.8855 11.1915 25.0037 10.5975C25.1218 10.0034 25.0612 9.38763 24.8294 8.82803C24.5976 8.26844 24.2051 7.79014 23.7014 7.45363ZM7.25687 17.8946C8.06884 17.3521 9.02346 17.0625 10 17.0625C11.3095 17.0625 12.5654 17.5827 13.4913 18.5087C14.4173 19.4346 14.9375 20.6905 14.9375 22C14.9375 22.9765 14.6479 23.9312 14.1054 24.7431C13.5628 25.5551 12.7917 26.1879 11.8895 26.5617C10.9873 26.9354 9.99452 27.0331 9.03674 26.8426C8.07896 26.6521 7.19918 26.1819 6.50866 25.4913C5.81814 24.8008 5.34789 23.921 5.15737 22.9633C4.96686 22.0055 5.06464 21.0127 5.43835 20.1105C5.81205 19.2083 6.44491 18.4372 7.25687 17.8946ZM8.29857 24.5464C8.80219 24.8829 9.3943 25.0625 10 25.0625C10.8122 25.0625 11.5912 24.7398 12.1655 24.1655C12.7398 23.5912 13.0625 22.8122 13.0625 22C13.0625 21.3943 12.8829 20.8022 12.5464 20.2986C12.2099 19.7949 11.7316 19.4024 11.172 19.1706C10.6124 18.9388 9.99661 18.8782 9.40254 18.9963C8.80847 19.1145 8.26279 19.4062 7.83449 19.8345C7.40619 20.2628 7.11451 20.8085 6.99635 21.4025C6.87818 21.9966 6.93883 22.6124 7.17062 23.172C7.40241 23.7316 7.79494 24.2099 8.29857 24.5464ZM19.2569 17.8946C20.0688 17.3521 21.0235 17.0625 22 17.0625C23.3095 17.0625 24.5654 17.5827 25.4913 18.5087C26.4173 19.4346 26.9375 20.6905 26.9375 22C26.9375 22.9765 26.6479 23.9312 26.1054 24.7431C25.5628 25.5551 24.7917 26.1879 23.8895 26.5617C22.9873 26.9354 21.9945 27.0331 21.0367 26.8426C20.079 26.6521 19.1992 26.1819 18.5087 25.4913C17.8181 24.8008 17.3479 23.921 17.1574 22.9633C16.9669 22.0055 17.0646 21.0127 17.4383 20.1105C17.8121 19.2083 18.4449 18.4372 19.2569 17.8946ZM20.2986 24.5464C20.8022 24.8829 21.3943 25.0625 22 25.0625C22.8122 25.0625 23.5912 24.7398 24.1655 24.1655C24.7398 23.5912 25.0625 22.8122 25.0625 22C25.0625 21.3943 24.8829 20.8022 24.5464 20.2986C24.2099 19.7949 23.7316 19.4024 23.172 19.1706C22.6124 18.9388 21.9966 18.8782 21.4025 18.9963C20.8085 19.1145 20.2628 19.4062 19.8345 19.8345C19.4062 20.2628 19.1145 20.8085 18.9963 21.4025C18.8782 21.9966 18.9388 22.6124 19.1706 23.172C19.4024 23.7316 19.7949 24.2099 20.2986 24.5464Z"
                                     fill="white" stroke="white" stroke-width="0.125" />
@@ -146,7 +147,7 @@
             </div>
 
         </div>
-    </div>
+        </div>
     @endif
 
     @yield('container')
@@ -154,66 +155,85 @@
     <div class="bottom-navigation-bar">
         <div class="tf-container">
 
-        <!-- JULE -->
-        @if (Auth::check())
-            <ul class="tf-navigation-bar">
-                <li class="{{ Request::is('dashboard*') ? 'active' : '' }}"><a
-                        class="fw_6 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ url('/') }}"><i
-                            class="{{ Request::is('dashboard*') ? 'icon-home2' : 'icon-home' }}"></i> Home</a> </li>
-                <li class="{{ Request::is('my-absen*') ? 'active' : '' }}"><a
-                        class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ url('/my-absen') }}"><i class="icon-history"></i> History</a> </li>
-                <li><a class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ url('/absen') }}"><i class="icon-scan-qr-code"></i> </a> </li>
-                        
-                <li class="{{ Request::is('my-notifikasi*') ? 'active' : '' }}">
-                    <a class="fw_4 d-flex justify-content-center align-items-center flex-column" href="{{ url('/my-notifikasi') }}">
-                        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Lingkaran Notifikasi -->
-                            <circle cx="12" cy="12" r="9.5"
-                                stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}" stroke-width="1.5" />
-                            <!-- Lonceng -->
-                            <path d="M15 10V9C15 7 13.5 5.5 12 5.5C10.5 5.5 9 7 9 9V10C9 11.5 8 13 7 13.5V14H17V13.5C16 13 15 11.5 15 10Z"
-                                stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                            <!-- Garis Notifikasi -->
-                            <path d="M10 17H14" stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}" stroke-width="1.5" stroke-linecap="round" />
-                        </svg>
-                        <span>Notifikasi</span>
-                    </a>
-                </li>
+            <!-- JULE -->
+            @if (Auth::check())
+                <ul class="tf-navigation-bar">
+                    <li class="{{ Request::is('dashboard*') ? 'active' : '' }}"><a
+                            class="fw_6 d-flex justify-content-center align-items-center flex-column"
+                            href="{{ url('/') }}"><i
+                                class="{{ Request::is('dashboard*') ? 'icon-home2' : 'icon-home' }}"></i> Home</a>
+                    </li>
+                    <li class="{{ Request::is('my-absen*') ? 'active' : '' }}"><a
+                            class="fw_4 d-flex justify-content-center align-items-center flex-column"
+                            href="{{ url('/my-absen') }}"><i class="icon-history"></i> History</a> </li>
+                    <li><a class="fw_4 d-flex justify-content-center align-items-center flex-column"
+                            href="{{ url('/absen') }}"><i class="icon-scan-qr-code"></i> </a> </li>
 
-                <li class="{{ Request::is('my-profile*') ? 'active' : '' }}"><a
-                        class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ url('/my-profile') }}"><i class="icon-user-outline"></i> Profile</a> </li>
-            </ul>
+                    <li class="{{ Request::is('my-notifikasi*') ? 'active' : '' }}">
+                        <a class="fw_4 d-flex justify-content-center align-items-center flex-column"
+                            href="{{ url('/my-notifikasi') }}">
+                            <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <!-- Lingkaran Notifikasi -->
+                                <circle cx="12" cy="12" r="9.5"
+                                    stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
+                                    stroke-width="1.5" />
+                                <!-- Lonceng -->
+                                <path
+                                    d="M15 10V9C15 7 13.5 5.5 12 5.5C10.5 5.5 9 7 9 9V10C9 11.5 8 13 7 13.5V14H17V13.5C16 13 15 11.5 15 10Z"
+                                    stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <!-- Garis Notifikasi -->
+                                <path d="M10 17H14"
+                                    stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
+                                    stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <span>Notifikasi</span>
+                        </a>
+                    </li>
+
+                    <li class="{{ Request::is('my-profile*') ? 'active' : '' }}"><a
+                            class="fw_4 d-flex justify-content-center align-items-center flex-column"
+                            href="{{ url('/my-profile') }}"><i class="icon-user-outline"></i> Profile</a> </li>
+                </ul>
             @else
-            <ul class="tf-navigation-bar">
-                <li class="{{ Request::is('dashboard*') ? 'active' : '' }}"><a
-                        class="fw_6 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ url('/') }}"><i
-                            class="{{ Request::is('dashboard*') ? 'icon-home2' : 'icon-home' }}"></i> Home</a> </li>
-                <li class="{{ Request::is('my-absen*') ? 'active' : '' }}"><a
-                        class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ route('login') }}"><i class="icon-history"></i> History</a> </li>
-                <li><a class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ route('login') }}"><i class="icon-scan-qr-code"></i> </a> </li>
-                <li class="{{ Request::is('my-dinas-luar*') ? 'active' : '' }}"><a
-                        class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ route('login') }}"><svg width="25" height="24" viewBox="0 0 25 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12.25" cy="12" r="9.5"
-                                stroke="{{ Request::is('my-dinas-luar*') ? '#0000FF' : '#717171' }}" />
-                            <path
-                                d="M17.033 11.5318C17.2298 11.3316 17.2993 11.0377 17.2144 10.7646C17.1293 10.4914 16.9076 10.2964 16.6353 10.255L14.214 9.88781C14.1109 9.87213 14.0218 9.80462 13.9758 9.70702L12.8933 7.41717C12.7717 7.15989 12.525 7 12.2501 7C11.9754 7 11.7287 7.15989 11.6071 7.41717L10.5244 9.70723C10.4784 9.80483 10.3891 9.87234 10.286 9.88802L7.86469 10.2552C7.59257 10.2964 7.3707 10.4916 7.2856 10.7648C7.2007 11.038 7.27018 11.3318 7.46702 11.532L9.2189 13.3144C9.29359 13.3905 9.32783 13.5 9.31021 13.607L8.89692 16.1239C8.86027 16.3454 8.91594 16.5609 9.0533 16.7308C9.26676 16.9956 9.6394 17.0763 9.93735 16.9128L12.1027 15.7244C12.1932 15.6749 12.3072 15.6753 12.3975 15.7244L14.563 16.9128C14.6684 16.9707 14.7807 17 14.8966 17C15.1083 17 15.3089 16.9018 15.4469 16.7308C15.5845 16.5609 15.6399 16.345 15.6033 16.1239L15.1898 13.607C15.1722 13.4998 15.2064 13.3905 15.2811 13.3144L17.033 11.5318Z"
-                                stroke="{{ Request::is('my-dinas-luar*') ? '#0000FF' : '#717171' }}"
-                                stroke-width="1.25" />
-                        </svg>
-                        Dinas</a> </li>
-                <li class="{{ Request::is('my-profile*') ? 'active' : '' }}"><a
-                        class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                        href="{{ route('login') }}"><i class="icon-user-outline"></i> Profile</a> </li>
-            </ul>
+                <ul class="tf-navigation-bar">
+                    <li class="{{ Request::is('dashboard*') ? 'active' : '' }}"><a
+                            class="fw_6 d-flex justify-content-center align-items-center flex-column"
+                            href="{{ url('/') }}"><i
+                                class="{{ Request::is('dashboard*') ? 'icon-home2' : 'icon-home' }}"></i> Home</a>
+                    </li>
+                    <li class="{{ Request::is('my-absen*') ? 'active' : '' }}"><a
+                            class="fw_4 d-flex justify-content-center align-items-center flex-column login-alert"
+                            href="{{ route('login') }}"><i class="icon-history"></i> History</a> </li>
+                    <li><a class="fw_4 d-flex justify-content-center align-items-center flex-column login-alert"
+                            href="{{ route('login') }}"><i class="icon-scan-qr-code"></i> </a> </li>
+                    <li class="{{ Request::is('my-notifikasi*') ? 'active' : '' }}">
+                        <a class="fw_4 d-flex justify-content-center align-items-center flex-column login-alert"
+                            href="{{ url('/my-notifikasi') }}">
+                            <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <!-- Lingkaran Notifikasi -->
+                                <circle cx="12" cy="12" r="9.5"
+                                    stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
+                                    stroke-width="1.5" />
+                                <!-- Lonceng -->
+                                <path
+                                    d="M15 10V9C15 7 13.5 5.5 12 5.5C10.5 5.5 9 7 9 9V10C9 11.5 8 13 7 13.5V14H17V13.5C16 13 15 11.5 15 10Z"
+                                    stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
+                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <!-- Garis Notifikasi -->
+                                <path d="M10 17H14"
+                                    stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
+                                    stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <span>Notifikasi</span>
+                        </a>
+                    </li>
+                    <li class="{{ Request::is('my-profile*') ? 'active' : '' }}"><a
+                            class="fw_4 d-flex justify-content-center align-items-center flex-column login-alert"
+                            href="{{ route('login') }}"><i class="icon-user-outline"></i> Profile</a> </li>
+                </ul>
             @endif
 
             <!-- JULE -->
@@ -243,7 +263,8 @@
                             <li class="nav-title">MENU</li>
                             <li>
                                 <a href="{{ url('/dashboard') }}" class="nav-link">
-                                    <i class="fas fa-home" style="{{ Request::is('dashboard*') ? 'color: blue' : 'color: black' }}"></i>
+                                    <i class="fas fa-home"
+                                        style="{{ Request::is('dashboard*') ? 'color: blue' : 'color: black' }}"></i>
                                     <span style="{{ Request::is('dashboard*') ? 'color: blue' : '' }}">Home</span>
                                 </a>
                             </li>
@@ -259,7 +280,8 @@
                                 <a href="{{ url('/my-dokumen') }}" class="nav-link">
                                     <i class="fa fa-folder-open"
                                         style="{{ Request::is('my-dokumen*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('my-dokumen*') ? 'color: blue' : '' }}">Jadwal Pelajaran</span>
+                                    <span style="{{ Request::is('my-dokumen*') ? 'color: blue' : '' }}">Jadwal
+                                        Pelajaran</span>
                                 </a>
                             </li>
                             <li>
@@ -327,7 +349,8 @@
                                     @csrf
                                     <button id="logout"
                                         class="flex justify-center gap-3 rounded-md bg-red-600 py-2 px-3 font-semibold hover:bg-red-500 focus:ring-2 focus:ring-red-400"
-                                        onclick="event.preventDefault(); this.closest('form').submit();" style="height: 40px;">
+                                        onclick="event.preventDefault(); this.closest('form').submit();"
+                                        style="height: 40px;">
                                         <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                             fill="currentColor" class="h-3 w-3">
                                             <path fill-rule="evenodd"
@@ -401,41 +424,90 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ url('/push/bin/push.js') }}"></script>
     <script src="{{ url('/js/app.js') }}"></script>
-    {{-- <script>
-        window.Echo.channel("messages").listen("NotifApproval", (event) => {
-            var user_id = {{ auth()->user()->id }};
-    if (event.user_id == user_id) {
-    if (event.type == "Approved") {
-    Swal.fire({
-    icon: "success",
-    title: "Approved",
-    text: event.notif,
-    footer: "<a href=" + event.url + ">View Application</a>",
-    });
-    } else if (event.type == "Approval") {
-    Swal.fire({
-    icon: "info",
-    title: "",
-    text: event.notif,
-    footer: "<a href=" + event.url + ">View Application</a>",
-    });
-    } else {
-    Swal.fire({
-    icon: "error",
-    title: "Rejected",
-    text: event.notif,
-    footer: "<a href=" + event.url + ">View Application</a>",
-    });
-    }
-    Push.create(event.notif);
-    }
-    });
-    </script> --}}
+
+    {{-- ALERT SURUH LOGIN --}}
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".login-alert").forEach(function(element) {
+                element.addEventListener("click", function(event) {
+                    event.preventDefault(); // Mencegah link langsung terbuka
+
+                    Swal.fire({
+                        title: "Anda belum login!",
+                        text: "Silakan login terlebih dahulu untuk mengakses halaman ini.",
+                        icon: "warning",
+                        showCancelButton: false,
+                        confirmButtonColor: "#3085d6",
+                        confirmButtonText: "OK"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href =
+                                "{{ route('login') }}"; // Arahkan ke halaman login
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
     @include('sweetalert::alert')
     @stack('script')
+
+    @if (session('email_error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Email Salah!',
+                text: "{{ session('email_error') }}",
+            });
+        </script>
+    @endif
+
+    @if (session('password_error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Password Salah!',
+                text: "{{ session('password_error') }}",
+            });
+        </script>
+    @endif
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+            });
+        </script>
+    @endif
+
+
+
+    @if (session('welcome'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: "Selamat Datang, {{ Auth::user()->name }}.",
+                text: "{{ session('welcome') }}",
+            });
+        </script>
+    @endif
+
+
+    @if (session('welcome_back'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Selamat Datang Kembali, {{ Auth::user()->name }}.',
+                text: "{{ session('welcome_back') }}",
+            });
+        </script>
+    @endif
+
 
 
 </body>
