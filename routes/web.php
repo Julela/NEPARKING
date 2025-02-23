@@ -58,6 +58,8 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/qr', [QrController::class, 'index'])->name('qr.index');
 
 Route::get('/password', [PasswordController::class, 'index'])->name('password.index');
+Route::put('/password/update/{id}', [PasswordController::class, 'gantiPassword'])->name('password.update');
+
 
 Route::get('/', function () {
     return view('dashboard.indexUser');

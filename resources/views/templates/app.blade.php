@@ -58,7 +58,20 @@
         .select2-selection__choice {
             line-height: 45px;
         }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
     </style>
+
     @stack('style')
 </head>
 
@@ -507,6 +520,59 @@
             });
         </script>
     @endif
+
+    <script>
+        function togglePassword(id) {
+            let input = document.getElementById(id);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+    </script>
+
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: "Berhasil!",
+                text: "{{ session('success') }}",
+                icon: "success",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+
+        @if (session('error'))
+            Swal.fire({
+                title: "Gagal!",
+                text: "{{ session('error') }}",
+                icon: "error",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+
+        @if ($errors->has('email'))
+            Swal.fire({
+                title: "Error!",
+                text: "{{ $errors->first('email') }}",
+                icon: "error",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+
+        @if ($errors->has('password'))
+            Swal.fire({
+                title: "Error!",
+                text: "{{ $errors->first('password') }}",
+                icon: "error",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        @endif
+    </script>
 
 
 
