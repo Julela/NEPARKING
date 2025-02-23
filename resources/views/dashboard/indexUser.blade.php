@@ -32,7 +32,7 @@
                                 </a>
                             </li>
                             <li class="wallet-card-item">
-                                <a class="fw_6" style="text-align: center;" href="{{ url('/jadwal-pelajaran') }}">
+                                <a class="fw_6" style="text-align: center;" href="{{ url('/jadwal') }}">
                                     <ul class="fas fa-chalkboard-teacher fa-2x" style="color: indigo;">
                                         <li class="path1"></li>
                                         <li class="path2"></li>
@@ -104,7 +104,7 @@
             @if (Auth::check())
                 <ul class="box-service mt-3">
                     <li>
-                        <a href="javascript:void(0);">
+                        <a href="{{ url('/qr') }}">
                             <div class="icon-box bg_service-2">
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +125,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);">
+                        <a href="{{ url('/cuti') }}">
                             <div class="icon-box bg_color_2">
                                 <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -194,7 +194,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:void(0);">
+                        <a href="/password">
                             <div class="icon-box bg_service-6">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
