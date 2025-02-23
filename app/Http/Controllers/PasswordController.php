@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class QrController extends Controller
+class PasswordController extends Controller
 {
     public function index()
     {
-        return view('qr.index');
+        return view('ganti_password.index');
     }
 }
-
