@@ -31,7 +31,7 @@
                         Kendaraan Saya
                         </a>
                     </li>
-                    <li class="wallet-card-item"><a class="fw_6" style="text-align: center;" href="{{ url('/jadwal-pelajaran') }}">
+                    <li class="wallet-card-item"><a class="fw_6" style="text-align: center;" href="{{ url('/jadwal') }}">
                             <ul class="fas fa-chalkboard-teacher fa-2x" style="color: indigo;">
                                 <li class="path1"></li>
                                 <li class="path2"></li>

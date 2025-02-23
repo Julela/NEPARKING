@@ -11,6 +11,11 @@ use App\Http\Controllers\QrController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\ParkingController;
+use App\Http\Controllers\JadwalController;
+
+
+//jadwal pelajaran
+Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
 
 
 //parkir
