@@ -250,7 +250,7 @@
                 <ul class="box-service mt-3">
                     <li>
                         <a href="{{ route('login') }}">
-                            <div class="icon-box bg_service-2">
+                            <div class="icon-box bg_service-2 login-alert">
                                 <svg width="25" height="24" viewBox="0 0 25 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -271,7 +271,7 @@
                     </li>
                     <li>
                         <a href="{{ route('login') }}">
-                            <div class="icon-box bg_color_2">
+                            <div class="icon-box bg_color_2 login-alert">
                                 <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -286,7 +286,7 @@
                     </li>
                     <li>
                         <a href="{{ route('login') }}">
-                            <div class="icon-box bg_color_5">
+                            <div class="icon-box bg_color_5 login-alert">
                                 <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <g clip-path="url(#clip0_4355_16445)">
@@ -306,7 +306,7 @@
                     </li>
                     <li>
                         <a href="{{ route('login') }}">
-                            <div class="icon-box bg_service-6">
+                            <div class="icon-box bg_service-6 login-alert">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path

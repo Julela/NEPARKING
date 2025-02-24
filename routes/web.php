@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\QrController;
+use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\ParkingController;
@@ -56,19 +57,15 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/qr', [QrController::class, 'index'])->name('qr.index');
 
+Route::get('/password', [PasswordController::class, 'index'])->name('password.index');
+Route::put('/password/update/{id}', [PasswordController::class, 'gantiPassword'])->name('password.update');
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 Route::get('/', function () {
     return view('dashboard.indexUser');
 })->name('home');
 
 
-//ROUTE LOGIN REGIS MASIH PAKE YANG INI
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::post('/register', [RegisteredUserController::class, 'store'])->middleware('guest');
 

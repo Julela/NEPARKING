@@ -8,7 +8,7 @@ class QrController extends Controller
 {
     public function index()
     {
-        return view('qr.index');// Pastikan view ini ada
+        return view('qr.index');
     }
 }
 
