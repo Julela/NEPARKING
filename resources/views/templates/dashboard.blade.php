@@ -130,11 +130,11 @@
                 <div>
                     <div class="logo-wrapper">
                       <a href="{{ url('/dashboard') }}">
-                      <img class="img-fluid for-light" style="width: 20%" src="{{ url('img/smkn1.png') }}" alt=""></a> 
+                      <img class="img-fluid for-light" style="width: 20%; margin-top:-5px;" src="{{ url('img/smkn1.png') }}" alt=""></a> 
 
                         
                         {{-- <div class="back-btn"><i class="fa fa-angle-left"></i></div> --}}
-                        <div ><h5 style="color: white; text-align: center; top: 10px;">Dashboard</h5></div>
+                        <div ><h5 style="color: white; text-align: center; margin-top:-35px; margin: left -5px;">Dashboard</h5></div>
                         <div class="toggle-sidebar"><i class="fa fa-cog status_toggle middle sidebar-toggle"> </i>
                         </div>
                     </div>
@@ -249,10 +249,11 @@
                                                 <button id="logout"
                                                     class="flex justify-center gap-3 rounded-md bg-red-600 py-2 px-3 font-semibold hover:bg-red-500 focus:ring-2 focus:ring-red-400"
                                                     onclick="event.preventDefault(); this.closest('form').submit();"
-                                                    style="height: 40px;">
+                                                    style="height: 35px; border-radius: 5px; border:none; position:center; margin-left: 22px; width:80%; margin-top:10px;">
                                                     <i class="fa-solid fa-arrow-right-from-bracket"
                                                         style="color: #6610f2;"></i>
-                                                    <span style="color: #6610f2;">Logout</span>
+                                                    <!-- <span style="color: #6610f2;">Logout</span> -->
+                                                    <span style="color: gray; font-style: bold;">Logout</span>
                                                 </button>
                                             </form>
                                         </li>
