@@ -20,9 +20,14 @@ Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
 
 
 //parkir
+
 Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');
-Route::post('/parkir/book', [ParkingController::class, 'book'])->name('parkir.book');
-Route::post('/parkir/cancel', [ParkingController::class, 'cancel'])->name('parkir.cancel');
+Route::post('/parkir/register', [ParkingController::class, 'register'])->name('parkir.register');
+Route::post('/parkir/check', [ParkingController::class, 'check'])->name('parkir.check');
+
+// Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');
+// Route::post('/parkir/book', [ParkingController::class, 'book'])->name('parkir.book');
+// Route::post('/parkir/cancel', [ParkingController::class, 'cancel'])->name('parkir.cancel');
 
 // ROUTE ADMIN  PAGE
 
