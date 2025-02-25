@@ -260,8 +260,8 @@
             <div class="header-sidebar bg_white_color is-fixed">
                 <div class="tf-container">
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="{{ url('/') }}" class="sidebar-logo">
-                            <img src="{{ asset('img/smkn1.png') }}" alt="logo" class="m-3">
+                        <a href="{{ url('/') }}" class="sidebar-logo" style="margin-left: -15px;">
+                            <img src="{{ asset('img/smkn1.png') }}" style="width: 20%;" alt="logo" class="m-3">
                             <h5>Neparking</h5>
                         </a>
                         <a href="javascript:void(0);" class="clear-panel"> <i class="icon-close1"></i> </a>
