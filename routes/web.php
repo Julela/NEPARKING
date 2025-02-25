@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\SocialliteController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\CutiController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\JadwalController;
+
 
 
 //jadwal pelajaran
@@ -36,6 +38,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/admin', function () {
         return view('dashboard.index');
     })->name('admin.page')->middleware('permission:main-admin');
+
+    Route::get('/my-profile', [AdminController::class, 'myProfile'])->name('kendaraan.index');
 
 });
 
