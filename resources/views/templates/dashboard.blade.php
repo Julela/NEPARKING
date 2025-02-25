@@ -104,9 +104,9 @@
                   </div> --}}
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="{{ url('/my-profile') }}"><i data-feather="user"></i><span>Account
+                                <li><a href="{{ url('/admin/my-profile') }}"><i data-feather="user"></i><span>Account
                                         </span></a></li>
-                                <li><a href="{{ url('/my-profile/edit-password') }}"><i
+                                <li><a href="{{ url('/admin/my-profile/edit-password') }}"><i
                                             data-feather="file-text"></i><span>Change Password</span></a></li>
                                 <li><a href="{{ url('/logout') }}" onclick="return confirm('Are you sure?')"><i
                                             data-feather="log-out"> </i><span>Log Out</span></a></li>
@@ -174,7 +174,7 @@
 
                                         <li class="sidebar-list">
                                             <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/my-profile') }}"><i data-feather="user-check">
+                                                href="{{ url('/admin/my-profile') }}"><i data-feather="user-check">
                                                 </i><span>My Profile</span></a>
                                         </li>
 
