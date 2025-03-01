@@ -25,11 +25,13 @@ return new class extends Migration
             $table->string('google_refresh_token', 255)->nullable();
             $table->string('location', 255)->nullable();
             $table->string('qr_code', 255)->nullable();
+            $table->string('qr_code_old', 255)->nullable();
             $table->string('plat_number', 255)->nullable();
             $table->string('class', 255)->nullable();
             $table->string('address', 255)->nullable();
             $table->string('img', 255)->nullable();
             $table->boolean('gender')->default(1)->comment('1 = Laki-laki, 0 = Perempuan');
+            $table->enum('qr_status', ['pending', 'approved', 'rejected'])->default('approved');
           
         });
         

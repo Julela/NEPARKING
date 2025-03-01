@@ -34,17 +34,20 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
 
-        // dd($request->all());
+        // dd($request);
     
         $request->validate([
             'name' => 'required|string|max:255',
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'email' => 'required|email|unique:users,email,' . $id,
+            'nis' => 'required|string|unique:users,nis,' . $id,
             'gender' => 'required|boolean',
-            'class_id' => 'required|exists:classes,id', 
+            'classes_id' => 'required|exists:classes,id',
             'address' => 'required|string|max:255',
 
         ]);
+
+        // dd($request->nis);
     
         $user = User::findOrFail($id);
     
@@ -66,8 +69,9 @@ class ProfileController extends Controller
             'name' => $request->name,
             'img' => $imageName,
             'email' => $request->email,
+            'nis' => $request->nis, 
             'gender' => (int) $request->gender,
-            'class_id' => $request->class, 
+            'classes_id' => $request->classes_id,
             'address' => $request->address, 
         ]);
     
@@ -81,6 +85,7 @@ class ProfileController extends Controller
         'name' => 'required|string|max:255',
         'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         'email' => 'required|email|unique:users,email',
+        'nis' => 'required|nis|unique:users,nis',
         'gender' => 'required|boolean',
         'class_id' => 'required|exists:classes,id',
         'address' => 'required|string|max:255',
@@ -97,6 +102,7 @@ class ProfileController extends Controller
         'name' => $request->name,
         'img' => $imageName,
         'email' => $request->email,
+        'nis' => $request->nis,
         'gender' => (int) $request->gender,
         'class_id' => $request->class_id,
         'address' => $request->address,

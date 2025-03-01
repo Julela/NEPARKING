@@ -22,6 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'nis',
         'password',
         'google_id',
         'google_token',
@@ -31,8 +32,12 @@ class User extends Authenticatable
         'gender',
         'address',
         'location',
-
+        'qr_code',
+        'qr_code_old',
+        'qr_status',
+        'classes_id',
     ];
+
 
 
     /**
