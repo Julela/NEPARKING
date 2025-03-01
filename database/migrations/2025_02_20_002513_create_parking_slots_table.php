@@ -11,10 +11,21 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parking_slots', function (Blueprint $table) {
+        // Schema::create('parking_slots', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('slot_number')->unique();
+        //     $table->boolean('is_booked')->default(false);
+        //     $table->timestamps();
+        // });
+        Schema::create('parking_a', function (Blueprint $table) {
             $table->id();
-            $table->string('slot_number')->unique();
-            $table->boolean('is_booked')->default(false);
+            $table->string('license_plate')->unique();
+            $table->timestamps();
+        });
+
+        Schema::create('parking_b', function (Blueprint $table) {
+            $table->id();
+            $table->string('license_plate')->unique();
             $table->timestamps();
         });
     }
@@ -25,6 +36,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parking_slots');
+        // Schema::dropIfExists('parking_slots');
+        Schema::dropIfExists('parking_a');
+        Schema::dropIfExists('parking_b');
     }
 };
