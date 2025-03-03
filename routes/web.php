@@ -41,6 +41,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::get('/my-profile', [AdminController::class, 'myProfile'])->name('kendaraan.index');
 
+    Route::get('/qr-requests', [QrController::class, 'pendingRequests'])->name('qr-requests');
+    Route::post('/qr-approve/{id}', [QrController::class, 'approveQRUpdate'])->name('qr-approve');
+    Route::post('/qr-reject/{id}', [QrController::class, 'rejectQRUpdate'])->name('qr-reject');
 });
 
 //Notif
@@ -95,8 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/{id}', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store'); 
-
+    Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
 });
 
 // LOGIN WITH GOOGLE
@@ -108,4 +110,4 @@ Route::get('/my-profile', [ProfileController::class, 'myProfile'])->middleware('
 
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

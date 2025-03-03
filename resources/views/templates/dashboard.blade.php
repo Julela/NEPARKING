@@ -49,6 +49,8 @@
         integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
         crossorigin=""></script>
     <link rel="stylesheet" type="text/css" href="{{ url('clock/dist/bootstrap-clockpicker.min.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     @stack('style')
 </head>
@@ -164,7 +166,7 @@
 
                                         <li class="sidebar-list">
                                             <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/notifications') }}"><i data-feather="bell"></i>
+                                                href="{{ url('/admin/qr-requests') }}"><i data-feather="bell"></i>
                                                 <span>Notifications</span>
                                                 {{-- @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
                             <span class="badge rounded-pill badge-danger">{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
@@ -402,6 +404,45 @@
     </script> --}}
     @stack('script')
     @include('sweetalert::alert')
+    <script>
+        function approveRequest(userId) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin ingin menyetujui permintaan perubahan QR Code ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, Setujui!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var form = document.getElementById('approve-form');
+                    form.action = "{{ url('/admin/qr-approve') }}/" + userId;
+                    form.submit();
+                }
+            });
+        }
+    
+        function rejectRequest(userId) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: "Apakah Anda yakin ingin menolak permintaan perubahan QR Code ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Tolak!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var form = document.getElementById('reject-form');
+                    form.action = "{{ url('/admin/qr-reject') }}/" + userId;
+                    form.submit();
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
