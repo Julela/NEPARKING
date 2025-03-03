@@ -86,6 +86,12 @@
         font-weight: bold;
         color: #333;
     }
+
+    .table-container {
+        max-height: 300px;
+        /* Sesuaikan tinggi tabel */
+        overflow-y: auto;
+    }
 </style>
 
 <!-- JavaScript untuk Search Bar -->

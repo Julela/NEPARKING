@@ -14,6 +14,7 @@ use App\Http\Controllers\CutiController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\AbsenController;
 
 
 
@@ -22,10 +23,15 @@ Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
 
 
 //parkir
-
 Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');
 Route::post('/parkir/register', [ParkingController::class, 'register'])->name('parkir.register');
 Route::post('/parkir/check', [ParkingController::class, 'check'])->name('parkir.check');
+
+//form hadir kendaraan
+Route::get('/generate-qr', [QrController::class, 'generateQr'])->name('generate.qr');
+Route::get('/absen', [AbsenController::class, 'showForm'])->name('absen.form');
+Route::post('/absen', [AbsenController::class, 'store'])->name('absen.store');
+
 
 // Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');
 // Route::post('/parkir/book', [ParkingController::class, 'book'])->name('parkir.book');
