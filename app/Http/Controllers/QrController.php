@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\QRRequestApproved;
 use App\Notifications\QRRequestRejected;
+use Carbon\Carbon;
 
 
 class QrController extends Controller
@@ -38,49 +39,58 @@ class QrController extends Controller
                 'qr_status' => 'approved'
             ]);
         }
-        
-        // Jika user ingin mengubah QR Code yang sudah ada
-        if ($user->qr_code != $newQRCode) {
-            // Simpan QR code lama
-            $user->update([
-                'qr_code_old' => $user->qr_code,
-                'qr_code' => $newQRCode,
-                'qr_status' => 'pending'
-            ]);
 
-            // Notifikasi ke admin (optional)
-            $this->notifyAdmin($user, 'Permintaan perubahan QR Code baru dari ' . $user->name);
-
+        // Cek apakah masih ada pengajuan perubahan QR yang PENDING
+        if ($user->qr_status === 'pending') {
             return response()->json([
-                'status' => 'success',
-                'message' => 'Permintaan perubahan QR Code telah dikirim ke admin.',
+                'status' => 'error',
+                'message' => 'Anda masih memiliki pengajuan perubahan QR Code yang menunggu persetujuan admin. Harap tunggu hingga disetujui sebelum mengajukan perubahan lagi.',
                 'qr_status' => 'pending'
             ]);
         }
 
         // Jika QR Code yang dimasukkan sama dengan yang sudah ada
+        if ($user->qr_code == $newQRCode) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'QR Code tidak ada perubahan.',
+                'qr_status' => $user->qr_status
+            ]);
+        }
+
+        // Jika user ingin mengubah QR Code yang sudah ada dan tidak ada perubahan pending sebelumnya
+        $user->update([
+            'qr_code_old' => $user->qr_code,
+            'qr_code' => $newQRCode,
+            'qr_status' => 'pending'
+        ]);
+
+        // Notifikasi ke admin (optional)
+        $this->notifyAdmin($user, 'Permintaan perubahan QR Code baru dari ' . $user->name);
+
         return response()->json([
             'status' => 'success',
-            'message' => 'QR Code tidak ada perubahan.',
-            'qr_status' => $user->qr_status
+            'message' => 'Permintaan perubahan QR Code telah dikirim ke admin.',
+            'qr_status' => 'pending'
         ]);
     }
+
 
     // Fungsi untuk menampilkan daftar permintaan perubahan QR Code (untuk admin)
     public function pendingRequests(Request $request)
     {
         $status = $request->query('status', 'pending');
-        
+
         $query = User::query();
-        
+
         if ($status != 'all') {
             $query->where('qr_status', $status);
         } else {
             $query->whereNotNull('qr_code');
         }
-        
+
         $users = $query->orderBy('updated_at', 'desc')->paginate(10);
-        
+
         return view('admin.admin-requestqr', compact('users'));
     }
 
@@ -88,7 +98,7 @@ class QrController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update(['qr_status' => 'approved']);
-        
+
         // Notifikasi ke user
         $user->notify(new QRRequestApproved());
 
@@ -98,19 +108,19 @@ class QrController extends Controller
     public function rejectQRUpdate($id)
     {
         $user = User::findOrFail($id);
-        
+
         // Pulihkan QR code lama
         $user->update([
             'qr_code' => $user->qr_code_old,
             'qr_status' => 'rejected'
         ]);
-        
+
         // Notifikasi ke user
         $user->notify(new QRRequestRejected());
 
         return back()->with('message', 'Permintaan perubahan QR Code ditolak.');
     }
-    
+
     // Fungsi untuk mengirim notifikasi ke admin (contoh)
     private function notifyAdmin($user, $message)
     {
@@ -118,5 +128,3 @@ class QrController extends Controller
         // Contoh: Admin::all()->each->notify(new QRRequestPending($user));
     }
 }
-
-
