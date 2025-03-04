@@ -16,8 +16,6 @@ use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsenController;
 
-
-
 //jadwal pelajaran
 Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
 
@@ -45,11 +43,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('dashboard.index');
     })->name('admin.page')->middleware('permission:main-admin');
 
+    
     Route::get('/my-profile', [AdminController::class, 'myProfile'])->name('kendaraan.index');
 
     Route::get('/qr-requests', [QrController::class, 'pendingRequests'])->name('qr-requests');
     Route::post('/qr-approve/{id}', [QrController::class, 'approveQRUpdate'])->name('qr-approve');
     Route::post('/qr-reject/{id}', [QrController::class, 'rejectQRUpdate'])->name('qr-reject');
+    Route::get('/dataKendaraan', [AdminController::class, 'dataKendaraan'])->name('admin.dataKendaraan');
 });
 
 //Notif
@@ -89,6 +89,11 @@ Route::put('/password/update/{id}', [PasswordController::class, 'gantiPassword']
 Route::get('/', function () {
     return view('dashboard.indexUser');
 })->name('home');
+
+
+Route::get('/scan', function () {
+    return view('scan.scan');
+})->name('kamera');
 
 
 

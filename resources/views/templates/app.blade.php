@@ -180,7 +180,7 @@
                             class="fw_4 d-flex justify-content-center align-items-center flex-column"
                             href="{{ url('/my-absen') }}"><i class="icon-history"></i> History</a> </li>
                     <li><a class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                            href="{{ url('/absen') }}"><i class="icon-scan-qr-code"></i> </a> </li>
+                            href="{{ url('/scan') }}"><i class="icon-scan-qr-code"></i> </a> </li>
 
                     <li class="{{ Request::is('my-notifikasi*') ? 'active' : '' }}">
                         <a class="fw_4 d-flex justify-content-center align-items-center flex-column"
@@ -289,14 +289,14 @@
                                         Profile</span>
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="{{ url('/jadwal') }}" class="nav-link">
                                     <i class="fas fa-chalkboard-teacher"
                                         style="{{ Request::is('jadwal*') ? 'color: blue' : 'color: black' }}"></i>
                                     <span style="{{ Request::is('jadwal*') ? 'color: blue' : '' }}">Jadwal
                                         Pelajaran</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li>
                                 <a href="{{ url('/parkir') }}" class="nav-link">
                                     <i class="fas fa-parking"
@@ -304,7 +304,7 @@
                                     <span style="{{ Request::is('parkir*') ? 'color: blue' : '' }}">Parkir</span>
                                 </a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="{{ url('/cuti') }}" class="nav-link">
                                     <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -317,7 +317,7 @@
                                     </svg>
                                     <span style="{{ Request::is('cuti*') ? 'color: blue' : '' }}">Izin / Sakit</span>
                                 </a>
-                            </li>
+                            </li> -->
 
                             <li>
                                 <a href="{{ url('/kendaraan') }}" class="nav-link">

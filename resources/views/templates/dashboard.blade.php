@@ -91,200 +91,205 @@
                                     class="fa fa-bell"></i>
                                 {{-- @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
                     <span class="badge rounded-pill badge-danger">{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
-                  @endif --}}
+                                @endif --}}
                             </a>
                         </li>
                         <li class="profile-nav onhover-dropdown p-0 me-0">
                             <div class="d-flex profile-media">
                                 {{-- @if (auth()->user()->foto_karyawan)
                     <img class="b-r-50" src="{{ url('/storage/'.auth()->user()->foto_karyawan) }}" alt="" style="width: 50px">
-                  @else
-                    <img class="b-r-50" src="{{ url('/html/assets/images/dashboard/profile.jpg') }}" alt="">
-                  @endif --}}
+                                @else
+                                <img class="b-r-50" src="{{ url('/html/assets/images/dashboard/profile.jpg') }}" alt="">
+                                @endif --}}
                                 {{-- <div class="flex-grow-1"><span>{{ auth()->user()->name }}</span>
-                    <p class="mb-0 font-roboto">{{ auth()->user()->Jabatan->nama_jabatan }} <i class="middle fa fa-angle-down"></i></p>
-                  </div> --}}
-                            </div>
-                            <ul class="profile-dropdown onhover-show-div">
-                                <li><a href="{{ url('/admin/my-profile') }}"><i data-feather="user"></i><span>Account
-                                        </span></a></li>
-                                <li><a href="{{ url('/admin/my-profile/edit-password') }}"><i
-                                            data-feather="file-text"></i><span>Change Password</span></a></li>
-                                <li><a href="{{ url('/logout') }}" onclick="return confirm('Are you sure?')"><i
-                                            data-feather="log-out"> </i><span>Log Out</span></a></li>
-                            </ul>
-                        </li>
-                    </ul>
+                                <p class="mb-0 font-roboto">{{ auth()->user()->Jabatan->nama_jabatan }} <i class="middle fa fa-angle-down"></i></p>
+                            </div> --}}
                 </div>
-                <script class="result-template" type="text/x-handlebars-template">
-            <div class="ProfileCard u-cf">                        
+                <ul class="profile-dropdown onhover-show-div">
+                    <li><a href="{{ url('/admin/my-profile') }}"><i data-feather="user"></i><span>Account
+                            </span></a></li>
+                    <li><a href="{{ url('/admin/my-profile/edit-password') }}"><i
+                                data-feather="file-text"></i><span>Change Password</span></a></li>
+                    <li><a href="{{ url('/logout') }}" onclick="return confirm('Are you sure?')"><i
+                                data-feather="log-out"> </i><span>Log Out</span></a></li>
+                </ul>
+                </li>
+                </ul>
+            </div>
+            <script class="result-template" type="text/x-handlebars-template">
+                <div class="ProfileCard u-cf">                        
             <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
             <div class="ProfileCard-details">
             <div class="ProfileCard-realName"></div>
             </div>
             </div>
           </script>
-                <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
-            </div>
+            <script class="empty-template" type="text/x-handlebars-template"><div class="EmptyMessage">Your search turned up 0 results. This most likely means the backend is down, yikes!</div></script>
         </div>
-        <div class="page-body-wrapper">
-            <div class="sidebar-wrapper">
-                <div>
-                    <div class="logo-wrapper">
-                      <a href="{{ url('/dashboard') }}">
-                      <img class="img-fluid for-light" style="width: 20%; margin-top:-5px;" src="{{ url('img/smkn1.png') }}" alt=""></a> 
+    </div>
+    <div class="page-body-wrapper">
+        <div class="sidebar-wrapper">
+            <div>
+                <div class="logo-wrapper">
+                    <a href="{{ url('/dashboard') }}">
+                        <img class="img-fluid for-light" style="width: 20%; margin-top:-5px;" src="{{ url('img/smkn1.png') }}" alt=""></a>
 
-                        
-                        {{-- <div class="back-btn"><i class="fa fa-angle-left"></i></div> --}}
-                        <div ><h5 style="color: white; text-align: center; margin-top:-35px; margin: left -5px;">Dashboard</h5></div>
-                        <div class="toggle-sidebar"><i class="fa fa-cog status_toggle middle sidebar-toggle"> </i>
-                        </div>
+
+                    {{-- <div class="back-btn"><i class="fa fa-angle-left"></i></div> --}}
+                    <div>
+                        <h5 style="color: white; text-align: center; margin-top:-35px; margin: left -5px;">Dashboard</h5>
                     </div>
-                    <div class="logo-icon-wrapper"><a href="{{ url('/dashboard') }}"><img class="img-fluid"
-                                src="{{ url('/html/assets/images/logo/logo-icon1.png') }}" alt=""></a></div>
-                    <nav class="sidebar-main">
-                        <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
-                        <div id="sidebar-menu">
-                            <ul class="sidebar-links" id="simple-bar">
-                                <li class="back-btn"><a href="{{ url('/dashboard') }}"><img class="img-fluid"
-                                            src="{{ url('/html/assets/images/logo/logo-icon.png') }}"
-                                            alt=""></a>
-                                    <div class="mobile-back text-end"><span>Back</span><i
-                                            class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
-                                </li>
-                                <li class="sidebar-main-title">
-                                    <h6 class="lan-1">General </h6>
-                                </li>
-                                <li class="menu-box">
-                                    <ul>
+                    <div class="toggle-sidebar"><i class="fa fa-cog status_toggle middle sidebar-toggle"> </i>
+                    </div>
+                </div>
+                <div class="logo-icon-wrapper"><a href="{{ url('/dashboard') }}"><img class="img-fluid"
+                            src="{{ url('/html/assets/images/logo/logo-icon1.png') }}" alt=""></a></div>
+                <nav class="sidebar-main">
+                    <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
+                    <div id="sidebar-menu">
+                        <ul class="sidebar-links" id="simple-bar">
+                            <li class="back-btn"><a href="{{ url('/dashboard') }}"><img class="img-fluid"
+                                        src="{{ url('/html/assets/images/logo/logo-icon.png') }}"
+                                        alt=""></a>
+                                <div class="mobile-back text-end"><span>Back</span><i
+                                        class="fa fa-angle-right ps-2" aria-hidden="true"></i></div>
+                            </li>
+                            <li class="sidebar-main-title">
+                                <h6 class="lan-1">General </h6>
+                            </li>
+                            <li class="menu-box">
+                                <ul>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/dashboard') }}"><i data-feather="home">
-                                                </i><span>Dashboard</span></a>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/admin/admin') }}"><i data-feather="home">
+                                            </i><span>Dashboard</span></a>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/admin/qr-requests') }}"><i data-feather="bell"></i>
-                                                <span>Notifications</span>
-                                                {{-- @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/admin/qr-requests') }}"><i data-feather="bell"></i>
+                                            <span>Notifications</span>
+                                            {{-- @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
                             <span class="badge rounded-pill badge-danger">{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
-                          @endif --}}
-                                            </a>
-                                        </li>
+                                            @endif --}}
+                                        </a>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/admin/my-profile') }}"><i data-feather="user-check">
-                                                </i><span>My Profile</span></a>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/admin/my-profile') }}"><i data-feather="user-check">
+                                            </i><span>My Profile</span></a>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/pegawai') }}"><i data-feather="users">
-                                                </i><span>Pegawai</span></a>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/admin/dataKendaraan') }}">
+                                            <i class="fas fa-motorcycle"></i>
+                                            <span>Data Kendaraan</span>
+                                        </a>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/shift') }}"><i data-feather="git-pull-request">
-                                                </i><span>Shift</span></a>
-                                        </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/rekap-data') }}"><i data-feather="credit-card">
-                                                </i><span>Rekap Data</span></a>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/shift') }}"><i data-feather="git-pull-request">
+                                            </i><span>Shift</span></a>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/lokasi-kantor') }}"><i data-feather="map-pin">
-                                                </i><span>Lokasi</span></a>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/rekap-data') }}"><i data-feather="credit-card">
+                                            </i><span>Rekap Data</span></a>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/jabatan') }}"><i data-feather="package">
-                                                </i><span>Jabatan</span></a>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/lokasi-kantor') }}"><i data-feather="map-pin">
+                                            </i><span>Lokasi</span></a>
+                                    </li>
 
-                                        <li class="sidebar-list"><a class="sidebar-link sidebar-title"
-                                                href="javascript:void(0)"><i
-                                                    data-feather="clock"></i><span>Absensi</span></a>
-                                            <ul class="sidebar-submenu">
-                                                <li><a href="{{ url('/absen') }}">Absen</a></li>
-                                                <li><a href="{{ url('/data-absen') }}">Data Absen</a></li>
-                                                <li><a href="{{ url('/dinas-luar') }}">Absen Dinas Luar</a></li>
-                                                <li><a href="{{ url('/data-dinas-luar') }}">Data Dinas Luar</a></li>
-                                            </ul>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/jabatan') }}"><i data-feather="package">
+                                            </i><span>Jabatan</span></a>
+                                    </li>
 
-                                        <li class="sidebar-list"><a class="sidebar-link sidebar-title"
-                                                href="javascript:void(0)"><i
-                                                    data-feather="film"></i><span>Overtime</span></a>
-                                            <ul class="sidebar-submenu">
-                                                <li><a href="{{ url('/lembur') }}">Lembur</a></li>
-                                                <li><a href="{{ url('/data-lembur') }}">Data Lembur</a></li>
-                                            </ul>
-                                        </li>
+                                    <li class="sidebar-list"><a class="sidebar-link sidebar-title"
+                                            href="javascript:void(0)"><i
+                                                data-feather="clock"></i><span>Absensi</span></a>
+                                        <ul class="sidebar-submenu">
+                                            <li><a href="{{ url('/absen') }}">Absen</a></li>
+                                            <li><a href="{{ url('/data-absen') }}">Data Absen</a></li>
+                                            <li><a href="{{ url('/dinas-luar') }}">Absen Dinas Luar</a></li>
+                                            <li><a href="{{ url('/data-dinas-luar') }}">Data Dinas Luar</a></li>
+                                        </ul>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <a class="sidebar-link sidebar-title link-nav"
-                                                href="{{ url('/data-cuti') }}"><i data-feather="shuffle">
-                                                </i><span>Cuti</span></a>
-                                        </li>
+                                    <li class="sidebar-list"><a class="sidebar-link sidebar-title"
+                                            href="javascript:void(0)"><i
+                                                data-feather="film"></i><span>Overtime</span></a>
+                                        <ul class="sidebar-submenu">
+                                            <li><a href="{{ url('/lembur') }}">Lembur</a></li>
+                                            <li><a href="{{ url('/data-lembur') }}">Data Lembur</a></li>
+                                        </ul>
+                                    </li>
 
-                                        <li class="sidebar-list"><a class="sidebar-link sidebar-title"
-                                                href="javascript:void(0)"><i
-                                                    data-feather="dollar-sign"></i><span>Keuangan</span></a>
-                                            <ul class="sidebar-submenu">
-                                                <li><a href="{{ url('/payroll') }}">Payroll</a></li>
-                                                <li><a href="{{ url('/kasbon') }}">Kasbon</a></li>
-                                            </ul>
-                                        </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/data-cuti') }}"><i data-feather="shuffle">
+                                            </i><span>Cuti</span></a>
+                                    </li>
 
-                                        <li class="sidebar-list">
-                                            <form method="POST" action="/logout" style="display: flex">
-                                                @csrf
-                                                <button id="logout"
-                                                    class="flex justify-center gap-3 rounded-md bg-red-600 py-2 px-3 font-semibold hover:bg-red-500 focus:ring-2 focus:ring-red-400"
-                                                    onclick="event.preventDefault(); this.closest('form').submit();"
-                                                    style="height: 35px; border-radius: 5px; border:none; position:center; margin-left: 22px; width:80%; margin-top:10px;">
-                                                    <i class="fa-solid fa-arrow-right-from-bracket"
-                                                        style="color: #6610f2;"></i>
-                                                    <!-- <span style="color: #6610f2;">Logout</span> -->
-                                                    <span style="color: gray; font-style: bold;">Logout</span>
-                                                </button>
-                                            </form>
-                                        </li>
+                                    <li class="sidebar-list"><a class="sidebar-link sidebar-title"
+                                            href="javascript:void(0)"><i
+                                                data-feather="dollar-sign"></i><span>Keuangan</span></a>
+                                        <ul class="sidebar-submenu">
+                                            <li><a href="{{ url('/payroll') }}">Payroll</a></li>
+                                            <li><a href="{{ url('/kasbon') }}">Kasbon</a></li>
+                                        </ul>
+                                    </li>
 
-                                    </ul>
-                                </li>
+                                    <li class="sidebar-list">
+                                        <form method="POST" action="/logout" style="display: flex">
+                                            @csrf
+                                            <button id="logout"
+                                                class="flex justify-center gap-3 rounded-md bg-red-600 py-2 px-3 font-semibold hover:bg-red-500 focus:ring-2 focus:ring-red-400"
+                                                onclick="event.preventDefault(); this.closest('form').submit();"
+                                                style="height: 35px; border-radius: 5px; border:none; position:center; margin-left: 22px; width:80%; margin-top:10px;">
+                                                <i class="fa-solid fa-arrow-right-from-bracket"
+                                                    style="color: #6610f2;"></i>
+                                                <!-- <span style="color: #6610f2;">Logout</span> -->
+                                                <span style="color: gray; font-style: bold;">Logout</span>
+                                            </button>
+                                        </form>
+                                    </li>
 
-                            </ul>
-                        </div>
-                        <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
-                    </nav>
-                </div>
-            </div>
-            <div class="page-body">
-                <div class="container-fluid default-dash">
-                    @yield('isi')
-                </div>
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-6 p-0 footer-left">
-                            <p class="mb-0">Copyright © 2023 Enzo. All rights reserved.</p>
-                        </div>
+                                </ul>
+                            </li>
 
+                        </ul>
                     </div>
-                </div>
-            </footer>
+                    <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>
+                </nav>
+            </div>
         </div>
+        <div class="page-body">
+            <div class="container-fluid default-dash">
+                @yield('isi')
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 p-0 footer-left">
+                        <p class="mb-0">Copyright © 2023 Enzo. All rights reserved.</p>
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+    </div>
     </div>
     <script src="{{ url('/html/assets/js/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ url('/html/assets/js/bootstrap/bootstrap.bundle.min.js') }}"></script>
@@ -328,79 +333,79 @@
     {{-- <script>
         window.Echo.channel("messages").listen("NotifApproval", (event) => {
             var user_id = {{ auth()->user()->id }};
-            if (event.user_id == user_id) {
-                if (event.type == "Approved") {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Approved",
-                        text: event.notif,
-                        footer: "<a href=" + event.url + ">View Application</a>",
-                    });
-                } else if (event.type == "Approval") {
-                    Swal.fire({
-                        icon: "info",
-                        title: "",
-                        text: event.notif,
-                        footer: "<a href=" + event.url + ">View Application</a>",
-                    });
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: "Rejected",
-                        text: event.notif,
-                        footer: "<a href=" + event.url + ">View Application</a>",
-                    });
-                }
-                Push.create(event.notif);
+    if (event.user_id == user_id) {
+    if (event.type == "Approved") {
+    Swal.fire({
+    icon: "success",
+    title: "Approved",
+    text: event.notif,
+    footer: "<a href=" + event.url + ">View Application</a>",
+    });
+    } else if (event.type == "Approval") {
+    Swal.fire({
+    icon: "info",
+    title: "",
+    text: event.notif,
+    footer: "<a href=" + event.url + ">View Application</a>",
+    });
+    } else {
+    Swal.fire({
+    icon: "error",
+    title: "Rejected",
+    text: event.notif,
+    footer: "<a href=" + event.url + ">View Application</a>",
+    });
+    }
+    Push.create(event.notif);
+    }
+    });
+    </script>
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
             }
-        });
-    </script>
-    <script>
-      function getLocation() {
-          if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(showPosition);
-          } else {
-              x.innerHTML = "Geolocation is not supported by this browser.";
-          }
-      }
-      
-      function showPosition(position) {
-          $('#lat').val(position.coords.latitude);
-          $('#lat2').val(position.coords.latitude);
-          $('#long').val(position.coords.longitude);
-          $('#long2').val(position.coords.longitude);
-      }
-  
-      setInterval(getLocation, 1000);
-    </script>
-    <script>
-      $(function(){
-          $('form').on('submit', function(){
-              $(':input[type="submit"]').prop('disabled', true);
-          })
-      })
-      $(function () {
-        $('.selectpicker').select2();
-        $('#mytable').DataTable( {
-            "responsive": true,
-            "paging": false, 
-            "info": false,
-            "scrollCollapse": true, 
-            "autoWidth": false,
-            'searching': false
-        });
-      });
-    </script>
-    <script>
-      config = {
-          enableTime: true,
-          noCalendar: true,
-          dateFormat: "H:i",
-          time_24hr: true,
-      }
+        }
 
-      flatpickr("input[type=datetime-local]", config)
-      flatpickr("input[type=datetime]", {})
+        function showPosition(position) {
+            $('#lat').val(position.coords.latitude);
+            $('#lat2').val(position.coords.latitude);
+            $('#long').val(position.coords.longitude);
+            $('#long2').val(position.coords.longitude);
+        }
+
+        setInterval(getLocation, 1000);
+    </script>
+    <script>
+        $(function() {
+            $('form').on('submit', function() {
+                $(':input[type="submit"]').prop('disabled', true);
+            })
+        })
+        $(function() {
+            $('.selectpicker').select2();
+            $('#mytable').DataTable({
+                "responsive": true,
+                "paging": false,
+                "info": false,
+                "scrollCollapse": true,
+                "autoWidth": false,
+                'searching': false
+            });
+        });
+    </script>
+    <script>
+        config = {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+        }
+
+        flatpickr("input[type=datetime-local]", config)
+        flatpickr("input[type=datetime]", {})
     </script> --}}
     @stack('script')
     @include('sweetalert::alert')
@@ -423,7 +428,7 @@
                 }
             });
         }
-    
+
         function rejectRequest(userId) {
             Swal.fire({
                 title: 'Konfirmasi',
