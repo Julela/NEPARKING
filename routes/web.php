@@ -43,7 +43,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return view('dashboard.index');
     })->name('admin.page')->middleware('permission:main-admin');
 
-    
+    Route::get('/dataUser', [AdminController::class, 'users'])->name('admin.dataUser');
+    Route::get('/parking', [AdminController::class, 'parking'])->name('admin.parking');
+    Route::delete('/parking/delete/{id}/{type}', [AdminController::class, 'deleteParking'])->name('admin.deleteParking');
+
+    Route::get('/reports', [AdminController::class, 'reports'])->name('admin.reports');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::get('/my-profile', [AdminController::class, 'myProfile'])->name('kendaraan.index');
 
     Route::get('/qr-requests', [QrController::class, 'pendingRequests'])->name('qr-requests');

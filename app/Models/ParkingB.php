@@ -10,5 +10,5 @@ class ParkingB extends Model
     use HasFactory;
     
     protected $table = 'parking_b';
-    protected $fillable = ['license_plate'];
+    protected $fillable = ['license_plate','waktu_masuk'];
 }

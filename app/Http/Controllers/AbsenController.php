@@ -27,14 +27,16 @@ class AbsenController extends Controller
         $parkingACount = ParkingA::count();
         if ($parkingACount < 500) {
             ParkingA::create([
-                'license_plate' => $request->license_plate
+                'license_plate' => $request->license_plate,
+                'waktu_masuk' => now() // Menyimpan waktu saat ini
             ]);
         } else {
             // Jika parkir A penuh, cek parkir B (max 500)
             $parkingBCount = ParkingB::count();
             if ($parkingBCount < 500) {
                 ParkingB::create([
-                    'license_plate' => $request->license_plate
+                    'license_plate' => $request->license_plate,
+                    'waktu_masuk' => now() // Menyimpan waktu saat ini
                 ]);
             } else {
                 return redirect('/absen')->with('message', 'Parkir penuh! Tidak bisa absen.');

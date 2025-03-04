@@ -181,20 +181,30 @@
                                             href="{{ url('/admin/my-profile') }}"><i data-feather="user-check">
                                             </i><span>My Profile</span></a>
                                     </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/admin/dataUser') }}"><i data-feather="users">
+                                            </i><span>Management Users</span></a>
+                                    </li>
 
                                     <li class="sidebar-list">
                                         <a class="sidebar-link sidebar-title link-nav"
                                             href="{{ url('/admin/dataKendaraan') }}">
                                             <i class="fas fa-motorcycle"></i>
-                                            <span>Data Kendaraan</span>
+                                            <span>Vechile Data</span>
                                         </a>
                                     </li>
 
-
-                                    <li class="sidebar-list">
+                                    <!-- <li class="sidebar-list">
                                         <a class="sidebar-link sidebar-title link-nav"
                                             href="{{ url('/shift') }}"><i data-feather="git-pull-request">
                                             </i><span>Shift</span></a>
+                                    </li> -->
+
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/admin/parking') }}"><i data-feather="map">
+                                            </i><span>Management Parkir</span></a>
                                     </li>
 
                                     <li class="sidebar-list">
@@ -283,7 +293,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 p-0 footer-left">
-                        <p class="mb-0">Copyright © 2023 Enzo. All rights reserved.</p>
+                        <p class="mb-0">Copyright © 2025 Neparking. All rights reserved.</p>
                     </div>
 
                 </div>
