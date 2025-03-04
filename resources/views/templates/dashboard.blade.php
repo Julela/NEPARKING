@@ -207,7 +207,7 @@
                                             </i><span>Management Parkir</span></a>
                                     </li>
 
-                                    <li class="sidebar-list">
+                                    <!-- <li class="sidebar-list">
                                         <a class="sidebar-link sidebar-title link-nav"
                                             href="{{ url('/rekap-data') }}"><i data-feather="credit-card">
                                             </i><span>Rekap Data</span></a>
@@ -258,7 +258,7 @@
                                             <li><a href="{{ url('/payroll') }}">Payroll</a></li>
                                             <li><a href="{{ url('/kasbon') }}">Kasbon</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
 
                                     <li class="sidebar-list">
                                         <form method="POST" action="/logout" style="display: flex">
