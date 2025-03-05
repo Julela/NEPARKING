@@ -48,6 +48,7 @@ class PasswordController extends Controller
             }
     
             $user->save();
+            app(HistoryController::class)->store('Mengubah Password');
     
             return redirect()->back()->with('success', 'Data berhasil diperbarui!');
         } catch (\Exception $e) {

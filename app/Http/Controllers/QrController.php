@@ -108,6 +108,8 @@ class QrController extends Controller
             'is_read' => false
         ]);
 
+        app(HistoryController::class)->store('Mengubah Code QR');
+        
         return back()->with('message', 'QR Code berhasil disetujui.');
     }
 

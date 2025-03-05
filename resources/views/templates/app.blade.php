@@ -176,9 +176,9 @@
                             href="{{ url('/') }}"><i
                                 class="{{ Request::is('dashboard*') ? 'icon-home2' : 'icon-home' }}"></i> Home</a>
                     </li>
-                    <li class="{{ Request::is('my-absen*') ? 'active' : '' }}"><a
+                    <li class="{{ Request::is('history*') ? 'active' : '' }}"><a
                             class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                            href="{{ url('/my-absen') }}"><i class="icon-history"></i> History</a> </li>
+                            href="{{ url('/history') }}"><i class="icon-history"></i> History</a> </li>
                     <li><a class="fw_4 d-flex justify-content-center align-items-center flex-column"
                             href="{{ url('/scan') }}"><i class="icon-scan-qr-code"></i> </a> </li>
 

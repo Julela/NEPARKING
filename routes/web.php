@@ -15,6 +15,13 @@ use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\HistoryController;
+
+//history aktivitas user
+Route::middleware(['auth'])->group(function () {
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+});
+
 
 //jadwal pelajaran
 Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
@@ -44,9 +51,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     })->name('admin.page')->middleware('permission:main-admin');
 
     Route::get('/dataUser', [AdminController::class, 'users'])->name('admin.dataUser');
-    Route::get('/parking', [AdminController::class, 'parking'])->name('admin.parking');
-    Route::delete('/parking/delete/{id}/{type}', [AdminController::class, 'deleteParking'])->name('admin.deleteParking');
+    Route::get('/dataUser/create', [AdminController::class, 'create'])->name('admin.createUser');
+    Route::post('/dataUser', [AdminController::class, 'store'])->name('admin.dataUser.store');
+    Route::get('/dataUser/{id}/edit', [AdminController::class, 'edit'])->name('admin.editUser');
+    Route::put('/dataUser/{id}', [AdminController::class, 'update'])->name('admin.dataUser.update');
+    Route::delete('/dataUser/{id}', [AdminController::class, 'destroy'])->name('admin.dataUser.destroy');
 
+
+    Route::get('/admin/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/parking', [AdminController::class, 'parking'])->name('admin.parking');
+    Route::delete('/parking/delete/{id}/{type}', [AdminController::class, 'destroyParking'])->name('admin.destroyParking');
     Route::get('/reports', [AdminController::class, 'reports'])->name('admin.reports');
     Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
     Route::get('/my-profile', [AdminController::class, 'myProfile'])->name('kendaraan.index');
