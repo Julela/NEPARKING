@@ -59,6 +59,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 //Notif
 Route::get('/my-notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi.index');
+Route::get('/notifikasi/count', [NotifikasiController::class, 'getUnreadCount']);
+Route::post('/notifikasi/read', [NotifikasiController::class, 'markAsRead']);
+
+
 
 //Izin/Sakit
 Route::middleware(['auth'])->group(function () {
@@ -79,13 +83,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/qr', [QrController::class, 'index'])->name('qr.index');
-
 Route::post('/request-qr-update', [QrController::class, 'requestQRUpdate'])->name('qr.request-update');
-
-Route::get('/admin/qr-requests', [QrController::class, 'pendingRequests'])->name('admin.qr-requests');
-Route::post('/admin/qr-approve/{id}', [QrController::class, 'approveQRUpdate'])->name('admin.qr-approve');
-Route::post('/admin/qr-reject/{id}', [QrController::class, 'rejectQRUpdate'])->name('admin.qr-reject');
-
 
 Route::get('/password', [PasswordController::class, 'index'])->name('password.index');
 Route::put('/password/update/{id}', [PasswordController::class, 'gantiPassword'])->name('password.update');

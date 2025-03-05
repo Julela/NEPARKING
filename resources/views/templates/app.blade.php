@@ -183,27 +183,29 @@
                             href="{{ url('/scan') }}"><i class="icon-scan-qr-code"></i> </a> </li>
 
                     <li class="{{ Request::is('my-notifikasi*') ? 'active' : '' }}">
-                        <a class="fw_4 d-flex justify-content-center align-items-center flex-column"
-                            href="{{ url('/my-notifikasi') }}">
+                        <a class="fw_4 d-flex justify-content-center align-items-center flex-column position-relative"
+                            href="{{ url('/my-notifikasi') }}" id="notifikasi-link">
                             <svg width="25" height="25" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
-                                <!-- Lingkaran Notifikasi -->
                                 <circle cx="12" cy="12" r="9.5"
                                     stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
                                     stroke-width="1.5" />
-                                <!-- Lonceng -->
                                 <path
                                     d="M15 10V9C15 7 13.5 5.5 12 5.5C10.5 5.5 9 7 9 9V10C9 11.5 8 13 7 13.5V14H17V13.5C16 13 15 11.5 15 10Z"
                                     stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                <!-- Garis Notifikasi -->
                                 <path d="M10 17H14"
                                     stroke="{{ Request::is('my-notifikasi*') ? '#0000FF' : '#717171' }}"
                                     stroke-width="1.5" stroke-linecap="round" />
                             </svg>
                             <span>Notifikasi</span>
+                            <span id="notifikasi-badge"
+                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                                style="display: none;">0</span>
                         </a>
                     </li>
+
+
 
                     <li class="{{ Request::is('my-profile*') ? 'active' : '' }}"><a
                             class="fw_4 d-flex justify-content-center align-items-center flex-column"
@@ -261,7 +263,8 @@
                 <div class="tf-container">
                     <div class="d-flex justify-content-between align-items-center">
                         <a href="{{ url('/') }}" class="sidebar-logo" style="margin-left: -15px;">
-                            <img src="{{ asset('img/smkn1.png') }}" style="width: 20%;" alt="logo" class="m-3">
+                            <img src="{{ asset('img/smkn1.png') }}" style="width: 20%;" alt="logo"
+                                class="m-3">
                             <h5>Neparking</h5>
                         </a>
                         <a href="javascript:void(0);" class="clear-panel"> <i class="icon-close1"></i> </a>
@@ -402,6 +405,44 @@
     <script src="{{ url('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ url('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('/clock/dist/bootstrap-clockpicker.min.js') }}"></script>
+
+    {{-- JS BUAT INDEX NOTIF --}}
+    <script>
+        // Tandai semua notifikasi sebagai telah dibaca ketika halaman dibuka
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch("{{ url('/notifikasi/read') }}", {
+                method: "POST",
+                headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}" }
+            }).then(() => {
+                document.getElementById("notifikasi-badge").style.display = "none";
+            });
+        });
+
+        //2
+        function updateNotificationCount() {
+        fetch("{{ url('/notifikasi/count') }}")
+            .then(response => response.json())
+            .then(data => {
+                let badge = document.getElementById("notifikasi-badge");
+                if (data.count > 0) {
+                    badge.innerText = data.count;
+                    badge.style.display = "inline-block";
+                } else {
+                    badge.style.display = "none";
+                }
+            });
+    }
+
+    // Jalankan setiap 10 detik untuk update otomatis
+    setInterval(updateNotificationCount, 10000);
+
+    // Jalankan saat halaman dimuat
+    updateNotificationCount();
+
+    </script>
+
+
+
     <script>
         config = {
             enableTime: true,

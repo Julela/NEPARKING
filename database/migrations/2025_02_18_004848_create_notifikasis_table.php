@@ -9,8 +9,10 @@ return new class extends Migration {
     {
         Schema::create('notifikasis', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->text('pesan');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('title');
+            $table->text('message');
+            $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }

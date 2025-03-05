@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Notifikasi;
 use Illuminate\Support\Facades\Auth;
 use App\Notifications\QRRequestApproved;
 use App\Notifications\QRRequestRejected;
@@ -99,8 +100,13 @@ class QrController extends Controller
         $user = User::findOrFail($id);
         $user->update(['qr_status' => 'approved']);
 
-        // Notifikasi ke user
-        $user->notify(new QRRequestApproved());
+        // Simpan notifikasi ke database
+        Notifikasi::create([
+            'user_id' => $user->id,
+            'title' => 'Permintaan QR Disetujui',
+            'message' => 'Permintaan perubahan QR Code Anda telah disetujui oleh admin.',
+            'is_read' => false
+        ]);
 
         return back()->with('message', 'QR Code berhasil disetujui.');
     }
@@ -115,11 +121,17 @@ class QrController extends Controller
             'qr_status' => 'rejected'
         ]);
 
-        // Notifikasi ke user
-        $user->notify(new QRRequestRejected());
+        // Simpan notifikasi ke database
+        Notifikasi::create([
+            'user_id' => $user->id,
+            'title' => 'Permintaan QR Ditolak',
+            'message' => 'Permintaan perubahan QR Code Anda telah ditolak oleh admin.',
+            'is_read' => false
+        ]);
 
         return back()->with('message', 'Permintaan perubahan QR Code ditolak.');
     }
+
 
     // Fungsi untuk mengirim notifikasi ke admin (contoh)
     private function notifyAdmin($user, $message)
