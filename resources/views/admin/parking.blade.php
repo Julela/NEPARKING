@@ -1,69 +1,66 @@
 @extends('templates.dashboard')
 
 @section('isi')
+<div class="col-md-12 project-list">
+    <div class="card">
+        <div class="row text-center">
+            <div class="col-md-6 mt-2 p-0 d-flex">
+                <h2 class="text-2xl font-semibold mb-6 text-center">Parking Management</h2>
+            </div>
+            <div class="col-md-6 p-0">
+            </div>
+        </div>
+    </div>
+</div>
 <div class="container mx-auto p-6">
-    <h2 class="text-2xl font-semibold mb-4">Manajemen Parkir</h2>
+    @if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
 
     {{-- Parking A --}}
-    <div class="bg-white shadow-md rounded-lg p-4 mb-6">
-        <h3 class="text-xl font-semibold mb-3">Parkir A</h3>
-        <table class="min-w-full bg-white border border-gray-200">
-            <thead>
-                <tr class="bg-gray-100">
-                    <th class="py-2 px-4 border">No</th>
-                    <th class="py-2 px-4 border">Plat Nomor</th>
-                    <th class="py-2 px-4 border">Waktu Masuk</th>
-                    <th class="py-2 px-4 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($parkingA as $key => $park)
-                <tr class="text-center">
-                    <td class="py-2 px-4 border">{{ $key + 1 }}</td>
-                    <td class="py-2 px-4 border">{{ $park->license_plate }}</td>
-                    <td class="py-2 px-4 border">{{ $park->waktu_masuk }}</td>
-                    <td class="py-2 px-4 border">
-                        <form action="{{ url('admin.deleteParking', ['id' => $park->id, 'type' => 'A']) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kendaraan ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="bg-red-500 text-black px-3 py-1 rounded">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold text-blue-600 mb-3">Area A</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach ($parkingA as $park)
+            <div class="bg-blue-100 p-4 rounded-lg shadow-lg flex justify-between items-center">
+                <div>
+                    <p class="text-lg font-semibold">{{ $park->license_plate }}</p>
+                    <p class="text-black text-sm">Masuk: {{ $park->waktu_masuk }}</p>
+                </div>
+                <form action="{{ route('admin.admin.destroyParking', ['id' => $park->id, 'type' => 'A']) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kendaraan ini?');">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-danger text-black px-4 py-2 rounded-full shadow-md hover:bg-red-600 transition">
+                        Hapus
+                    </button>
+                </form>
+            </div>
+            @endforeach
+        </div>
     </div>
 
     {{-- Parking B --}}
-    <div class="bg-white shadow-md rounded-lg p-4">
-        <h3 class="text-xl font-semibold mb-3">Parkir B</h3>
-        <table class="min-w-full bg-white border border-gray-200">
-            <thead>
-                <tr class="bg-gray-100">
-                    <th class="py-2 px-4 border">No</th>
-                    <th class="py-2 px-4 border">Plat Nomor</th>
-                    <th class="py-2 px-4 border">Waktu Masuk</th>
-                    <th class="py-2 px-4 border">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($parkingB as $key => $park)
-                <tr class="text-center">
-                    <td class="py-2 px-4 border">{{ $key + 1 }}</td>
-                    <td class="py-2 px-4 border">{{ $park->license_plate }}</td>
-                    <td class="py-2 px-4 border">{{ $park->wakti_masuk }}</td>
-                    <td class="py-2 px-4 border">
-                        <form action="{{ url('admin.deleteParking', ['id' => $park->id, 'type' => 'B']) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kendaraan ini?');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="bg-red-500 text-black px-3 py-1 rounded">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+    <div>
+        <h3 class="text-xl font-semibold text-green-600 mb-3">Area B</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            @foreach ($parkingB as $park)
+            <div class="bg-green-100 p-4 rounded-lg shadow-lg flex justify-between items-center">
+                <div>
+                    <p class="text-lg font-semibold">{{ $park->license_plate }}</p>
+                    <p class="text-black text-sm">Masuk: {{ $park->waktu_masuk }}</p>
+                </div>
+                <form action="{{ route('admin.admin.destroyParking', ['id' => $park->id, 'type' => 'B']) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kendaraan ini?');">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-sm btn-danger text-black px-4 py-2 rounded-full shadow-md hover:bg-red-600 transition">
+                        Hapus
+                    </button>
+                </form>
+            </div>
+            @endforeach
+        </div>
     </div>
 </div>
 @endsection

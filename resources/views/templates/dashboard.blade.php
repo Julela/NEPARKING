@@ -184,7 +184,7 @@
                                     <li class="sidebar-list">
                                         <a class="sidebar-link sidebar-title link-nav"
                                             href="{{ url('/admin/dataUser') }}"><i data-feather="users">
-                                            </i><span>Management Users</span></a>
+                                            </i><span>Users Management</span></a>
                                     </li>
 
                                     <li class="sidebar-list">
@@ -204,7 +204,12 @@
                                     <li class="sidebar-list">
                                         <a class="sidebar-link sidebar-title link-nav"
                                             href="{{ url('/admin/parking') }}"><i data-feather="map">
-                                            </i><span>Management Parkir</span></a>
+                                            </i><span>Parking Management</span></a>
+                                    </li>
+                                    <li class="sidebar-list">
+                                        <a class="sidebar-link sidebar-title link-nav"
+                                            href="{{ url('/admin/reports') }}"><i data-feather="file-text">
+                                            </i><span>Reports and History</span></a>
                                     </li>
 
                                     <!-- <li class="sidebar-list">
