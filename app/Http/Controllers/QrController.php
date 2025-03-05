@@ -102,6 +102,8 @@ class QrController extends Controller
         // Notifikasi ke user
         $user->notify(new QRRequestApproved());
 
+        app(HistoryController::class)->store('Mengubah Code QR');
+        
         return back()->with('message', 'QR Code berhasil disetujui.');
     }
 

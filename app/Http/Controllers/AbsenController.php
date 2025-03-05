@@ -44,5 +44,7 @@ class AbsenController extends Controller
         }
 
         return redirect('/parkir')->with('message', 'Kendaraan berhasil diparkir.');
+
+        app(HistoryController::class)->store('Memarkirkan kendaraan');
     }
 }

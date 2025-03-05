@@ -35,6 +35,8 @@ class KendaraanController extends Controller
             'tipe' => $request->tipe,
         ]);
 
+        app(HistoryController::class)->store('Menambah kendaraan');
+        
         return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil ditambahkan');
     }
 
@@ -56,14 +58,20 @@ class KendaraanController extends Controller
 
         $kendaraan->update($request->all());
 
+        app(HistoryController::class)->store('Mengedit data kendaraan');
+
         return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil diperbarui');
+
     }
 
     public function destroy($id) {
         $kendaraan = Kendaraan::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $kendaraan->delete();
 
+        app(HistoryController::class)->store('Menghapus data kendaraan');
+
         return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil dihapus');
+
     }
 }
 

@@ -15,6 +15,13 @@ use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\HistoryController;
+
+//history aktivitas user
+Route::middleware(['auth'])->group(function () {
+    Route::get('/history', [HistoryController::class, 'index'])->name('history.index');
+});
+
 
 //jadwal pelajaran
 Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
