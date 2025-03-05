@@ -136,11 +136,11 @@
                                 Beritahu Saya
                             </label>
                         </div> --}}
-                        <div>
+                        {{-- <div>
                             <a href="jajvascript:void(0);" class="text-blue-600 font-semibold text-sm hover:underline">
                                 Lupa Password?
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="mt-12">

@@ -104,11 +104,11 @@
                     </div>
 
                     <div class="flex flex-wrap items-center justify-between gap-4 mt-6">
-                        <div>
+                        {{-- <div>
                             <a href="jajvascript:void(0);" class="text-blue-600 font-semibold text-sm hover:underline">
                                 Lupa Password?
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="mt-12">
