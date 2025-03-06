@@ -68,6 +68,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/qr-requests', [QrController::class, 'pendingRequests'])->name('qr-requests');
     Route::post('/qr-approve/{id}', [QrController::class, 'approveQRUpdate'])->name('qr-approve');
     Route::post('/qr-reject/{id}', [QrController::class, 'rejectQRUpdate'])->name('qr-reject');
+    Route::get('/pending-requests/count', [QrController::class, 'countPendingRequests']);
     Route::get('/dataKendaraan', [AdminController::class, 'dataKendaraan'])->name('admin.dataKendaraan');
 });
 

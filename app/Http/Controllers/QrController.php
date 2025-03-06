@@ -95,6 +95,13 @@ class QrController extends Controller
         return view('admin.admin-requestqr', compact('users'));
     }
 
+    public function countPendingRequests()
+{
+    $count = User::where('qr_status', 'pending')->count();
+    return response()->json(['count' => $count]);
+}
+
+
     public function approveQRUpdate($id)
     {
         $user = User::findOrFail($id);

@@ -87,13 +87,11 @@
                 <div class="nav-right col-8 pull-right right-header p-0">
                     <ul class="nav-menus">
                         <li>
-                            <a class="notification-box" href="{{ url('/notifications') }}"><i
-                                    class="fa fa-bell"></i>
-                                {{-- @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
-                    <span class="badge rounded-pill badge-danger">{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
-                                @endif --}}
+                            <a class="notification-box" href="{{ url('/admin/qr-requests') }}">
+                                <i class="fa fa-bell"></i>
+                                <span id="notification-badge" class="badge rounded-pill badge-danger" style="display: none;"></span>
                             </a>
-                        </li>
+                        </li>                        
                         <li class="profile-nav onhover-dropdown p-0 me-0">
                             <div class="d-flex profile-media">
                                 {{-- @if (auth()->user()->foto_karyawan)
@@ -168,13 +166,15 @@
 
                                     <li class="sidebar-list">
                                         <a class="sidebar-link sidebar-title link-nav"
-                                            href="{{ url('/admin/qr-requests') }}"><i data-feather="bell"></i>
-                                            <span>Notifications</span>
+                                            href="{{ url('/admin/qr-requests') }}">
+                                            <i data-feather="clipboard"></i>
+                                            <span>Requests QR</span>
                                             {{-- @if (auth()->user()->notifications()->whereNull('read_at')->count() > 0)
-                            <span class="badge rounded-pill badge-danger">{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
+                                            <span class="badge rounded-pill badge-danger">{{ auth()->user()->notifications()->whereNull('read_at')->count() }}</span>
                                             @endif --}}
                                         </a>
                                     </li>
+                                    
 
                                     <li class="sidebar-list">
                                         <a class="sidebar-link sidebar-title link-nav"
@@ -463,6 +463,29 @@
             });
         }
     </script>
+    <script>
+        function fetchPendingRequestsCount() {
+            fetch("{{ url('admin/pending-requests/count') }}")
+                .then(response => response.json())
+                .then(data => {
+                    let badge = document.getElementById("notification-badge");
+                    if (data.count > 0) {
+                        badge.innerText = data.count;
+                        badge.style.display = "inline-block";
+                    } else {
+                        badge.style.display = "none";
+                    }
+                })
+                .catch(error => console.error("Error fetching notification count:", error));
+        }
+    
+        // Panggil pertama kali saat halaman dimuat
+        fetchPendingRequestsCount();
+    
+        // Update setiap 10 detik
+        setInterval(fetchPendingRequestsCount, 10000);
+    </script>
+    
 </body>
 
 </html>
