@@ -34,6 +34,8 @@ class QrController extends Controller
                 'qr_status' => 'approved'
             ]);
 
+            app(HistoryController::class)->store('Membuat Code QR');
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'QR Code berhasil dibuat.',
@@ -69,6 +71,8 @@ class QrController extends Controller
         // Notifikasi ke admin (optional)
         $this->notifyAdmin($user, 'Permintaan perubahan QR Code baru dari ' . $user->name);
 
+        app(HistoryController::class)->store('Meminta ubah Code QR');
+
         return response()->json([
             'status' => 'success',
             'message' => 'Permintaan perubahan QR Code telah dikirim ke admin.',
@@ -96,10 +100,10 @@ class QrController extends Controller
     }
 
     public function countPendingRequests()
-{
-    $count = User::where('qr_status', 'pending')->count();
-    return response()->json(['count' => $count]);
-}
+    {
+        $count = User::where('qr_status', 'pending')->count();
+        return response()->json(['count' => $count]);
+    }
 
 
     public function approveQRUpdate($id)
@@ -116,7 +120,7 @@ class QrController extends Controller
         ]);
 
         app(HistoryController::class)->store('Mengubah Code QR');
-        
+
         return back()->with('message', 'QR Code berhasil disetujui.');
     }
 
