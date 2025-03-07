@@ -9,13 +9,52 @@ use App\Models\ParkingA;
 use App\Models\ParkingB;
 use App\Models\User;
 
-
 class AdminController extends Controller
 {
     public function myProfile()
     {
         return view('admin.admin-myprofile');
     }
+
+
+
+    public function updateProfile(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'gender' => 'required|boolean',
+            'address' => 'nullable|string|max:255',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'gender' => $request->gender,
+            'address' => $request->address,
+        ];
+
+        if ($request->hasFile('img')) {
+            if ($user->img && file_exists(public_path('img/' . $user->img))) {
+                unlink(public_path('img/' . $user->img));
+            }
+
+            $image = $request->file('img');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('img'), $imageName);
+
+            $data['img'] = $imageName; // Pastikan ini disimpan ke database
+        }
+
+        $user->update($data);
+
+        return redirect()->back()->with('success', 'Profile berhasil diperbarui!');
+    }
+
+
 
     public function dataKendaraan()
     {
@@ -37,9 +76,9 @@ class AdminController extends Controller
     }
     public function create()
     {
-        return view('admin.createUser'); 
+        return view('admin.createUser');
     }
-    
+
     public function store(Request $request)
     {
         // Validasi data input
@@ -48,14 +87,14 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
         ]);
-    
+
         // Simpan data pengguna baru
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password), // Enkripsi password
         ]);
-    
+
         return redirect()->route('admin.admin.dataUser')->with('success', 'Pengguna berhasil ditambahkan');
     }
     // Menampilkan form edit pengguna
@@ -95,7 +134,8 @@ class AdminController extends Controller
         $parkingB = ParkingB::latest()->get();
         return view('admin.parking', compact('parkingA', 'parkingB'));
     }
-    public function destroyParking($id, $type) {
+    public function destroyParking($id, $type)
+    {
         if ($type === 'A') {
             ParkingA::where('id', $id)->delete();
         } else {

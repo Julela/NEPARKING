@@ -28,9 +28,5 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ParkingSlotSeeder::class,
         ]);
-
-        $this->call([
-            JadwalSeeder::class,
-        ]);
     }
 }
