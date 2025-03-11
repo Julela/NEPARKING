@@ -43,7 +43,7 @@
           </div>
         </div>
       </div>
-      <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
+      <!-- <div class="col-xl-2 col-lg-4 col-sm-4 des-xsm-50 box-col-33">
         <div class="card investment-sec">
           <div class="animated-bg"><i></i><i></i><i></i></div>
           <div class="card-body">
@@ -92,7 +92,7 @@
             {{-- <h3>{{ $jumlah_izin_pulang_cepat }}</h3> --}}
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
   <div class="col-xl-12 container-fluid calendar-basic">

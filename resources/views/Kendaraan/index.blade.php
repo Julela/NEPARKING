@@ -14,7 +14,7 @@
 <br>
 <br>
 <div class="container mt-5">
-    
+
     <div class="list-group">
         @foreach($kendaraan as $k)
         <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
@@ -24,13 +24,32 @@
             </div>
             <div class="d-flex gap-2">
                 <a href="{{ route('kendaraan.edit', $k->id) }}" class="btn btn-primary">✏️ Edit</a>
-                <form action="{{ route('kendaraan.destroy', $k->id) }}" method="POST" class="d-inline">
+                <form id="delete-form-{{ $k->id }}" action="{{ route('kendaraan.destroy', $k->id) }}" method="POST" class="d-inline">
                     @csrf @method('DELETE')
-                    <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin hapus kendaraan ini?')">❌ Hapus</button>
+                    <button type="button" class="btn btn-danger" onclick="confirmDelete({{ $k->id }})">❌ Hapus</button>
                 </form>
+
             </div>
         </div>
         @endforeach
     </div>
 </div>
+<script>
+    function confirmDelete(id) {
+        Swal.fire({
+            title: "Apakah Anda yakin?",
+            text: "Data kendaraan akan dihapus secara permanen!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form-' + id).submit();
+            }
+        });
+    }
+</script>
 @endsection

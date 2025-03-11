@@ -16,6 +16,10 @@ use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\IzinController;
+
+Route::get('/izin/create', [IzinController::class, 'create'])->name('izin.create');
+Route::post('/izin', [IzinController::class, 'store'])->name('izin.store');
 
 //history aktivitas user
 Route::middleware(['auth'])->group(function () {
@@ -31,6 +35,7 @@ Route::get('/jadwal', [JadwalController::class, 'index'])->name('jadwal');
 Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');
 Route::post('/parkir/register', [ParkingController::class, 'register'])->name('parkir.register');
 Route::post('/parkir/check', [ParkingController::class, 'check'])->name('parkir.check');
+Route::put('/parkir/{id}', [ParkingController::class, 'update'])->name('parking.update');
 
 //form hadir kendaraan
 Route::get('/generate-qr', [QrController::class, 'generateQr'])->name('generate.qr');
