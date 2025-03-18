@@ -19,7 +19,8 @@
     @if (session('success'))
         <div class="text-green-500">{{ session('success') }}</div>
     @endif
-    <form action="{{ route('absen.store') }}" method="POST">
+    <!-- onsubmit="return validateTime(event)" -->
+    <form action="{{ route('absen.store') }}" method="POST" onsubmit="return validateTime(event)">
         @csrf
         <div class="mb-4">
             <label for="qr_code" class="block text-gray-700 font-bold">Plat Nomor:</label>
@@ -42,16 +43,27 @@
         <button type="submit" class="btn btn-primary text-black px-4 py-2 rounded">Parkir</button>
     </form>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-function validateTime() {
+function validateTime(event) {
+    event.preventDefault(); // Mencegah form terkirim langsung
+
     let now = new Date();
     let cutoff = new Date();
-    cutoff.setHours(7, 15, 0);
+    cutoff.setHours(7, 15, 0, 0); // Menetapkan batas waktu pukul 07:15:00
+
     if (now > cutoff) {
-        alert('Absen sudah ditutup pada pukul 07:15.');
-        return false;
+        Swal.fire({
+            icon: 'error',
+            title: 'Waktu Absen Ditutup!',
+            text: 'Absen sudah ditutup pada pukul 07:15.',
+            confirmButtonText: 'OK'
+        });
+        return false; // Menghentikan pengiriman form
     }
-    return true;
+
+    event.target.submit(); // Kirim form jika masih dalam waktu absen
 }
 </script>
+
 @endsection

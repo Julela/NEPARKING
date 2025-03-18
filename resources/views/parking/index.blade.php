@@ -7,6 +7,7 @@
         <div class="tf-balance-box">
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="text-center mb-4 text-primary fw-bold">Daftar Kendaraan Terparkir</h2>
+                <a href="{{ route('izin.create') }}" class="btn btn-warning">Izin</a>
             </div>
         </div>
     </div>
@@ -19,15 +20,16 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
+    
     <!-- Search Bar -->
     <div class="mb-4">
         <input type="text" id="searchInput" class="form-control" placeholder="Cari plat nomor...">
     </div>
 
-    <!-- Tabel A -->
+    @foreach (['A' => $parkingA, 'B' => $parkingB] as $area => $parking)
     <div class="card shadow-lg mb-4">
-        <div class="card-header bg-primary text-white">
-            <h5 class="mb-0">Tabel Parkir A</h5>
+        <div class="card-header bg-{{ $area == 'A' ? 'primary' : 'success' }} text-white">
+            <h5 class="mb-0">Area {{ $area }}</h5>
         </div>
         <div class="card-body">
             <table class="table table-hover table-striped">
@@ -35,6 +37,7 @@
                     <tr>
                         <th>No</th>
                         <th>Plat Nomor</th>
+                        <th>Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,6 +45,11 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td class="license-plate">{{ $car->qr_code }}</td>
+                        <td>
+                            <span class="badge bg-{{ $car->status == 'parkir' ? 'success' : 'warning' }}">
+                                {{ ucfirst($car->status) }}
+                            </span>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -73,29 +81,9 @@
             </table>
         </div>
     </div>
+    @endforeach
 </div>
 
-
-<!-- Custom CSS -->
-<style>
-    .table-hover tbody tr:hover {
-        background-color: #f1f1f1;
-        transition: 0.3s;
-    }
-
-    .license-plate {
-        font-weight: bold;
-        color: #333;
-    }
-
-    .table-container {
-        max-height: 300px;
-        /* Sesuaikan tinggi tabel */
-        overflow-y: auto;
-    }
-</style>
-
-<!-- JavaScript untuk Search Bar -->
 <script>
     document.getElementById('searchInput').addEventListener('keyup', function() {
         let filter = this.value.toUpperCase();
@@ -107,5 +95,4 @@
         });
     });
 </script>
-
 @endsection
