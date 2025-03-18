@@ -19,13 +19,13 @@ return new class extends Migration
         // });
         Schema::create('parking_a', function (Blueprint $table) {
             $table->id();
-            $table->string('license_plate')->unique();
+            $table->string('qr_code')->unique();
             $table->timestamps();
         });
 
         Schema::create('parking_b', function (Blueprint $table) {
             $table->id();
-            $table->string('license_plate')->unique();
+            $table->string('qr_code')->unique();
             $table->timestamps();
         });
     }

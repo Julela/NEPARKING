@@ -9,12 +9,7 @@ use Carbon\Carbon;
 
 class ParkingController extends Controller
 {
-    // public function index()
-    // {
-    //     $parkingA = ParkingA::all();
-    //     $parkingB = ParkingB::all();
-    //     return view('parking.index', compact('parkingA', 'parkingB'));
-    // }
+    
     public function index()
     {
         return view('parking.index', [
@@ -22,6 +17,15 @@ class ParkingController extends Controller
             'parkingB' => ParkingB::all()
         ]);
     }
+
+    // public function index()
+    // {
+    //     $parkingA = ParkingA::whereNull('waktu_keluar')->orWhere('waktu_keluar', '>', now())->get();
+    //     $parkingB = ParkingB::whereNull('waktu_keluar')->orWhere('waktu_keluar', '>', now())->get();
+        
+    //     return view('parkir.index', compact('parkingA', 'parkingB'));
+    // }
+
 
     public function register(Request $request)
     {

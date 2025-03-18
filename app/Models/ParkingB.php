@@ -10,7 +10,7 @@ class ParkingB extends Model
     use HasFactory;
     
     protected $table = 'parking_b';
-    protected $fillable = ['license_plate','waktu_masuk','waktu_keluar'];
+    protected $fillable = ['qr_code','waktu_masuk','waktu_keluar'];
     protected static function boot()
     {
         parent::boot();

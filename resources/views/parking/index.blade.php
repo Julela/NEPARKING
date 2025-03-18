@@ -41,7 +41,7 @@
                     @foreach($parkingA as $key => $car)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td class="license-plate">{{ $car->license_plate }}</td>
+                        <td class="license-plate">{{ $car->qr_code }}</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -66,7 +66,7 @@
                     @foreach($parkingB as $key => $car)
                     <tr>
                         <td>{{ $key + 1 }}</td>
-                        <td class="license-plate">{{ $car->license_plate }}</td>
+                        <td class="license-plate">{{ $car->qr_code }}</td>
                     </tr>
                     @endforeach
                 </tbody>

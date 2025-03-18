@@ -26,7 +26,8 @@
             @foreach ($parkingA as $park)
             <div class="bg-blue-100 p-4 rounded-lg shadow-lg flex justify-between items-center">
                 <div>
-                    <p class="text-lg font-semibold">{{ $park->license_plate }}</p>
+                    <p class="text-lg font-semibold">{{ $park->name }}</p>
+                    <p class="text-lg font-semibold">{{ $park->qr_code }}</p>
                     <p class="text-black text-sm">Masuk: {{ $park->waktu_masuk }}</p>
                 </div>
                 <form action="{{ route('admin.admin.destroyParking', ['id' => $park->id, 'type' => 'A']) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kendaraan ini?');">
@@ -48,7 +49,7 @@
             @foreach ($parkingB as $park)
             <div class="bg-green-100 p-4 rounded-lg shadow-lg flex justify-between items-center">
                 <div>
-                    <p class="text-lg font-semibold">{{ $park->license_plate }}</p>
+                    <p class="text-lg font-semibold">{{ $park->qr_code }}</p>
                     <p class="text-black text-sm">Masuk: {{ $park->waktu_masuk }}</p>
                 </div>
                 <form action="{{ route('admin.admin.destroyParking', ['id' => $park->id, 'type' => 'B']) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus kendaraan ini?');">

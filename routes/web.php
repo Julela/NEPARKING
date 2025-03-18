@@ -16,6 +16,7 @@ use App\Http\Controllers\ParkingController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ScanController;
 
 //history aktivitas user
 Route::middleware(['auth'])->group(function () {
@@ -32,10 +33,14 @@ Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index')
 Route::post('/parkir/register', [ParkingController::class, 'register'])->name('parkir.register');
 Route::post('/parkir/check', [ParkingController::class, 'check'])->name('parkir.check');
 
-//form hadir kendaraan
+
 Route::get('/generate-qr', [QrController::class, 'generateQr'])->name('generate.qr');
-Route::get('/absen', [AbsenController::class, 'showForm'])->name('absen.form');
-Route::post('/absen', [AbsenController::class, 'store'])->name('absen.store');
+Route::get('/download-latest-qr', [QRController::class, 'downloadLatestQR'])->middleware('auth');
+
+
+//form hadir kendaraan
+Route::get('/absen', [AbsenController::class, 'showForm'])->name('absen.form')->middleware('auth');
+Route::post('/absen', [AbsenController::class, 'store'])->name('absen.store')->middleware('auth');
 
 
 // Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');
@@ -110,10 +115,11 @@ Route::get('/', function () {
     return view('dashboard.indexUser');
 })->name('home');
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/scan', [ScanController::class, 'index'])->name('history.index');
+    Route::post('/scan/process', [ScanController::class, 'processQrCode'])->name('scanner.process');
 
-Route::get('/scan', function () {
-    return view('scan.scan');
-})->name('kamera');
+});
 
 
 

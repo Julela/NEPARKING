@@ -1,4 +1,3 @@
-{{-- resources/views/absen/form.blade.php --}}
 @extends('templates.app')
 
 @section('container')
@@ -6,7 +5,7 @@
     <div class="tf-container">
         <div class="tf-balance-box">
             <div class="d-flex justify-content-between align-items-center">
-                <h2 class="text-xl font-bold mb-4">Form Kehadiran Kendaraan</h2>
+                <h2 class="text-xl font-bold mb-4">Form Parkir Kendaraan</h2>
             </div>
         </div>
     </div>
@@ -23,23 +22,24 @@
     <form action="{{ route('absen.store') }}" method="POST">
         @csrf
         <div class="mb-4">
-            <label for="license_plate" class="block text-gray-700 font-bold">Plat Nomor:</label>
-            <input type="text" id="license_plate" name="license_plate" class="w-full border rounded px-3 py-2" >
+            <label for="qr_code" class="block text-gray-700 font-bold">Plat Nomor:</label>
+            <input type="text" id="qr_code" name="qr_code" class="w-full border rounded px-3 py-2" value="{{ old('qr_code', $qr_code) }}" readonly>
         </div>
-        <!-- value="{{ old('license_plate', request('license_plate')) }}" readonly -->
+        <!--  -->
         <div class="mb-4">
             <label for="name" class="block text-gray-700 font-bold">Nama:</label>
-            <input type="text" id="name" name="name" class="w-full border rounded px-3 py-2" required>
+            <input type="text" id="name" name="name" class="w-full border rounded px-3 py-2" value="{{ old('name', $name) }}" readonly>
         </div>
         <div class="mb-4">
-            <label for="nik" class="block text-gray-700 font-bold">NIK:</label>
-            <input type="text" id="nik" name="nik" class="w-full border rounded px-3 py-2" required>
+            <label for="nis" class="block text-gray-700 font-bold">NIS:</label>
+            <input type="text" id="nis" name="nis" class="w-full border rounded px-3 py-2" value="{{ old('nis', $nis) }}" readonly>
         </div>
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <label for="class" class="block text-gray-700 font-bold">Kelas:</label>
-            <input type="text" id="class" name="class" class="w-full border rounded px-3 py-2" required>
-        </div>
-        <button type="submit" class="bg-blue-500 text-black px-4 py-2 rounded">Absen</button>
+            <input type="text" id="class" name="class" class="w-full border rounded px-3 py-2" value="{{ old('class', $class) }}" readonly>
+        </div> --}}
+
+        <button type="submit" class="btn btn-primary text-black px-4 py-2 rounded">Parkir</button>
     </form>
 </div>
 <script>

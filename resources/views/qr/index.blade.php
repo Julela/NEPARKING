@@ -13,6 +13,13 @@
         </div>
 
         <button class="btn btn-primary" onclick="generateQR()" id="generateBtn">Generate QR Code</button>
+        @if (auth()->user()->qr_code)
+            <button class="btn btn-warning mb-15" onclick="downloadQR()" id="downloadBtn">Download QR Code</button>
+        @endif
+
+      
+
+
     </div>
 
     <script>

@@ -12,11 +12,11 @@ return new class extends Migration
     public function up()
     {
         Schema::table('parking_a', function (Blueprint $table) {
-            $table->timestamp('waktu_masuk')->nullable()->after('license_plate');
+            $table->timestamp('waktu_masuk')->nullable()->after('qr_code');
         });
 
         Schema::table('parking_b', function (Blueprint $table) {
-            $table->timestamp('waktu_masuk')->nullable()->after('license_plate');
+            $table->timestamp('waktu_masuk')->nullable()->after('qr_code');
         });
     }
     /**

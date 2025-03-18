@@ -278,10 +278,10 @@
                         <ul class="box-nav">
                             <li class="nav-title">MENU</li>
                             <li>
-                                <a href="{{ url('/dashboard') }}" class="nav-link">
+                                <a href="{{ url('/') }}" class="nav-link">
                                     <i class="fas fa-home"
-                                        style="{{ Request::is('dashboard*') ? 'color: blue' : 'color: black' }}"></i>
-                                    <span style="{{ Request::is('dashboard*') ? 'color: blue' : '' }}">Home</span>
+                                        style="{{ Request::is('home*') ? 'color: blue' : 'color: black' }}"></i>
+                                    <span style="{{ Request::is('home*') ? 'color: blue' : '' }}">Home</span>
                                 </a>
                             </li>
                             <li>
@@ -406,13 +406,101 @@
     <script src="{{ url('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('/clock/dist/bootstrap-clockpicker.min.js') }}"></script>
 
+    {{-- ALERT PARKIR KENDARAAN --}}
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: '{{ session('error') }}',
+            });
+        </script>
+    @endif
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil',
+                text: '{{ session('success') }}',
+            });
+        </script>
+    @endif
+
+
+    {{-- DOWNLOAD QR --}}
+    <script>
+        function downloadQR() {
+            window.location.href = "/download-qr";
+        }
+    </script>
+    <script>
+        function downloadQR() {
+            fetch('/download-latest-qr', {
+                    method: 'GET',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.status === 200) {
+                        return response.blob();
+                    } else {
+                        return response.json().then(data => {
+                            throw new Error(data.message);
+                        });
+                    }
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = "QR_Code.png";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Gagal Mengunduh!',
+                        text: error.message,
+                    });
+                });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (userData.qr_code) {
+                qrText.value = userData.qr_code;
+                let qrCanvas = document.getElementById('qrCanvas');
+                let qr = new QRious({
+                    element: qrCanvas,
+                    value: userData.qr_code,
+                    size: 250
+                });
+                imgBox.classList.add("show-img");
+            } else {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Belum Ada QR Code!',
+                    text: 'Silakan buat QR Code terlebih dahulu.',
+                });
+            }
+        });
+    </script>
+
+
     {{-- JS BUAT INDEX NOTIF --}}
     <script>
         // Tandai semua notifikasi sebagai telah dibaca ketika halaman dibuka
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             fetch("{{ url('/notifikasi/read') }}", {
                 method: "POST",
-                headers: { "X-CSRF-TOKEN": "{{ csrf_token() }}" }
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                }
             }).then(() => {
                 document.getElementById("notifikasi-badge").style.display = "none";
             });
@@ -420,25 +508,24 @@
 
         //2
         function updateNotificationCount() {
-        fetch("{{ url('/notifikasi/count') }}")
-            .then(response => response.json())
-            .then(data => {
-                let badge = document.getElementById("notifikasi-badge");
-                if (data.count > 0) {
-                    badge.innerText = data.count;
-                    badge.style.display = "inline-block";
-                } else {
-                    badge.style.display = "none";
-                }
-            });
-    }
+            fetch("{{ url('/notifikasi/count') }}")
+                .then(response => response.json())
+                .then(data => {
+                    let badge = document.getElementById("notifikasi-badge");
+                    if (data.count > 0) {
+                        badge.innerText = data.count;
+                        badge.style.display = "inline-block";
+                    } else {
+                        badge.style.display = "none";
+                    }
+                });
+        }
 
-    // Jalankan setiap 10 detik untuk update otomatis
-    setInterval(updateNotificationCount, 10000);
+        // Jalankan setiap 10 detik untuk update otomatis
+        setInterval(updateNotificationCount, 10000);
 
-    // Jalankan saat halaman dimuat
-    updateNotificationCount();
-
+        // Jalankan saat halaman dimuat
+        updateNotificationCount();
     </script>
 
 
