@@ -19,7 +19,7 @@
         
         <div class="mb-3">
             <label for="nomor_plat" class="form-label">Nomor Plat</label>
-            <input type="text" id="qr_code" name="qr_code" class="w-full border rounded px-3 py-2" value="{{ old('qr_code', $qr_code) }}" readonly>
+            <input type="text" id="qr_code" name="qr_code" class="w-full border rounded px-3 py-2" value="{{ Auth::user()->qr_code }}" readonly>
         </div>
 
         <div class="mb-3">

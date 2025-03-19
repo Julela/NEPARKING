@@ -9,7 +9,7 @@ use Carbon\Carbon;
 
 class ParkingController extends Controller
 {
-    
+
     public function index()
     {
         return view('parking.index', [
@@ -22,7 +22,7 @@ class ParkingController extends Controller
     // {
     //     $parkingA = ParkingA::whereNull('waktu_keluar')->orWhere('waktu_keluar', '>', now())->get();
     //     $parkingB = ParkingB::whereNull('waktu_keluar')->orWhere('waktu_keluar', '>', now())->get();
-        
+
     //     return view('parkir.index', compact('parkingA', 'parkingB'));
     // }
 
@@ -90,5 +90,25 @@ class ParkingController extends Controller
         }
 
         return redirect()->route('parking.list')->with('message', $message);
+    }
+
+    public function exitParking($qr_code)
+    {
+        $parkirA = ParkingA::where('qr_code', $qr_code)
+            ->whereDate('waktu_masuk', today())->first();
+        $parkirB = ParkingB::where('qr_code', $qr_code)
+            ->whereDate('waktu_masuk', today())->first();
+
+        if ($parkirA) {
+            $parkirA->update(['waktu_keluar' => now()]);
+            $parkirA->delete();
+        } elseif ($parkirB) {
+            $parkirB->update(['waktu_keluar' => now()]);
+            $parkirB->delete();
+        } else {
+            return redirect()->back()->with('error', 'Anda tidak sedang parkir hari ini.');
+        }
+
+        return redirect()->back()->with('success', 'Anda telah keluar dari parkir.');
     }
 }

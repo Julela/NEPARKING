@@ -406,6 +406,26 @@
     <script src="{{ url('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <script type="text/javascript" src="{{ url('/clock/dist/bootstrap-clockpicker.min.js') }}"></script>
 
+    {{-- KELUAR PARKIR --}}
+    <script>
+        function confirmExit(url) {
+            Swal.fire({
+                title: 'Keluar Parkir?',
+                text: "Apakah Anda yakin ingin keluar parkir?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, Keluar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            });
+        }
+        </script>
+        
+
     {{-- ALERT PARKIR KENDARAAN --}}
     @if (session('error'))
         <script>

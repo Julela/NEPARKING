@@ -130,10 +130,12 @@ class AdminController extends Controller
 
     public function parking()
     {
-        $parkingA = ParkingA::latest()->get();
-        $parkingB = ParkingB::latest()->get();
+        $parkingA = ParkingA::with('user')->latest()->get();
+        $parkingB = ParkingB::with('user')->latest()->get();
+
         return view('admin.parking', compact('parkingA', 'parkingB'));
     }
+
     public function destroyParking($id, $type)
     {
         if ($type === 'A') {

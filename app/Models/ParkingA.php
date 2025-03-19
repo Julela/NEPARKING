@@ -20,4 +20,9 @@ class ParkingA extends Model
             $parking->waktu_keluar = now()->setTime(14, 0, 0); // Atur ke jam 14:00
         });
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'qr_code', 'qr_code');
+    }
 }

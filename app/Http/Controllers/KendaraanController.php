@@ -16,6 +16,14 @@ class KendaraanController extends Controller
 
     public function create()
     {
+        $user = Auth::user();
+
+        // Cek apakah user sudah memiliki kendaraan
+        $kendaraanExist = Kendaraan::where('user_id', $user->id)->exists();
+        if ($kendaraanExist) {
+            return redirect()->route('kendaraan.index')->with('error', 'Anda hanya bisa menambahkan satu kendaraan.');
+        }
+
         return view('kendaraan.create');
     }
 
@@ -23,12 +31,18 @@ class KendaraanController extends Controller
     {
         $user = Auth::user();
 
-        // Cek apakah user sudah memiliki QR Code
-        if (!$user->qr_code) {
-            return redirect()->route('qr.index')->with('error', 'Anda harus membuat QR Code terlebih dahulu sebelum menambahkan kendaraan.');
+        // Cek apakah user sudah memiliki kendaraan
+        $kendaraanExist = Kendaraan::where('user_id', $user->id)->exists();
+        if ($kendaraanExist) {
+            return redirect()->route('kendaraan.index')->with('error', 'Anda hanya bisa menambahkan satu kendaraan.');
         }
 
-        // Validasi input kecuali nomor_plat karena diambil dari qr_code user
+        // Cek apakah user memiliki QR Code
+        if (!$user->qr_code) {
+            return redirect()->route('qr.index')->with('error', 'Anda harus membuat QR Code terlebih dahulu.');
+        }
+
+        // Validasi input
         $request->validate([
             'merk' => 'required',
             'model' => 'required',
@@ -39,7 +53,7 @@ class KendaraanController extends Controller
         // Simpan kendaraan dengan nomor plat dari qr_code user
         Kendaraan::create([
             'user_id' => $user->id,
-            'nomor_plat' => $user->qr_code, // Ambil dari QR Code user
+            'nomor_plat' => $user->qr_code,
             'merk' => $request->merk,
             'model' => $request->model,
             'warna' => $request->warna,
@@ -51,10 +65,10 @@ class KendaraanController extends Controller
         return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil ditambahkan');
     }
 
-
-
     public function edit($id)
     {
+        $user = Auth::user();
+        
         $kendaraan = Kendaraan::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         return view('kendaraan.edit', compact('kendaraan'));
     }
@@ -62,18 +76,31 @@ class KendaraanController extends Controller
     public function update(Request $request, $id)
     {
         $kendaraan = Kendaraan::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
+        $user = Auth::user();
 
+        // Cek apakah user memiliki QR Code
+        if (!$user->qr_code) {
+            return redirect()->route('qr.index')->with('error', 'Anda harus membuat QR Code terlebih dahulu.');
+        }
+
+        // Validasi input
         $request->validate([
-            // 'nomor_plat' => 'required|unique:kendaraan,nomor_plat,' . $kendaraan->id,
             'merk' => 'required',
             'model' => 'required',
             'warna' => 'required',
             'tipe' => 'required|in:Motor,Mobil'
         ]);
 
-        $kendaraan->update($request->all());
+        // Update data kendaraan
+        $kendaraan->update([
+            'nomor_plat' => $user->qr_code,
+            'merk' => $request->merk,
+            'model' => $request->model,
+            'warna' => $request->warna,
+            'tipe' => $request->tipe,
+        ]);
 
-        app(HistoryController::class)->store('Mengedit data kendaraan');
+        app(HistoryController::class)->store('Mengedit kendaraan');
 
         return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil diperbarui');
     }
@@ -83,8 +110,9 @@ class KendaraanController extends Controller
         $kendaraan = Kendaraan::where('id', $id)->where('user_id', Auth::id())->firstOrFail();
         $kendaraan->delete();
 
-        app(HistoryController::class)->store('Menghapus data kendaraan');
+        app(HistoryController::class)->store('Menghapus kendaraan');
 
         return redirect()->route('kendaraan.index')->with('success', 'Kendaraan berhasil dihapus');
     }
 }
+
