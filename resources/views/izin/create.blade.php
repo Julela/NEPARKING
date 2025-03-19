@@ -17,8 +17,8 @@
             <form action="{{ route('izin.store') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                    <label for="license_plate" class="form-label">Plat Nomor</label>
-                    <input type="text" class="form-control" id="license_plate" name="license_plate" required>
+                    <label for="qr_code" class="form-label">Plat Nomor</label>
+                    <input type="text" class="form-control" id="qr_code" name="qr_code" required>
                 </div>
                 <button type="submit" class="btn btn-warning">Izin</button>
             </form>

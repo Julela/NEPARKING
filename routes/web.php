@@ -1,23 +1,25 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\SocialliteController;
-use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
-use App\Http\Controllers\KendaraanController;
 use App\Http\Controllers\QrController;
-use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\CutiController;
-use App\Http\Controllers\NotifikasiController;
-use App\Http\Controllers\ParkingController;
-use App\Http\Controllers\JadwalController;
-use App\Http\Controllers\AbsenController;
-use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\ScanController;
 use App\Http\Controllers\IzinController;
+use App\Http\Controllers\ScanController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\AbsenController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\JadwalController;
+use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\ParkingController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PasswordController;
+use App\Http\Controllers\KendaraanController;
+use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\Auth\SocialliteController;
+use App\Http\Controllers\ParkirKendaraanController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ParkirKendaraanControllerController;
 
 Route::get('/izin/create', [IzinController::class, 'create'])->name('izin.create');
 Route::post('/izin', [IzinController::class, 'store'])->name('izin.store');
@@ -46,8 +48,8 @@ Route::get('/download-latest-qr', [QRController::class, 'downloadLatestQR'])->mi
 
 
 //form hadir kendaraan
-Route::get('/absen', [AbsenController::class, 'showForm'])->name('absen.form')->middleware('auth');
-Route::post('/absen', [AbsenController::class, 'store'])->name('absen.store')->middleware('auth');
+Route::get('/parkir-kendaraan', [ParkirKendaraanController::class, 'showForm'])->name('parkir_kendaraan.form')->middleware('auth');
+Route::post('/parkir-kendaraan', [ParkirKendaraanController::class, 'store'])->name('parkir_kendaraan.store')->middleware('auth');
 
 
 // Route::get('/parkir', [ParkingController::class, 'index'])->name('parkir.index');

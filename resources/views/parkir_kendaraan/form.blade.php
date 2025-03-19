@@ -20,7 +20,7 @@
         <div class="text-green-500">{{ session('success') }}</div>
     @endif
     <!-- onsubmit="return validateTime(event)" -->
-    <form action="{{ route('absen.store') }}" method="POST" onsubmit="return validateTime(event)">
+    <form action="{{ route('parkir_kendaraan.store') }}" method="POST" onsubmit="return validateTime(event)">
         @csrf
         <div class="mb-4">
             <label for="qr_code" class="block text-gray-700 font-bold">Plat Nomor:</label>
@@ -40,7 +40,9 @@
             <input type="text" id="class" name="class" class="w-full border rounded px-3 py-2" value="{{ old('class', $class) }}" readonly>
         </div> --}}
 
-        <button type="submit" class="btn btn-primary text-black px-4 py-2 rounded">Parkir</button>
+        <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary px-5 py-2 rounded shadow">Parkir</button>
+        </div>
     </form>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -50,7 +52,7 @@ function validateTime(event) {
 
     let now = new Date();
     let cutoff = new Date();
-    cutoff.setHours(7, 15, 0, 0); // Menetapkan batas waktu pukul 07:15:00
+    cutoff.setHours(8, 15, 0, 0); // Menetapkan batas waktu pukul 07:15:00
 
     if (now > cutoff) {
         Swal.fire({
