@@ -20,12 +20,14 @@ return new class extends Migration
         Schema::create('parking_a', function (Blueprint $table) {
             $table->id();
             $table->string('qr_code')->unique();
+            $table->enum('status', ['parkir', 'izin'])->default('parkir');
             $table->timestamps();
         });
 
         Schema::create('parking_b', function (Blueprint $table) {
             $table->id();
             $table->string('qr_code')->unique();
+            $table->enum('status', ['parkir', 'izin'])->default('parkir');
             $table->timestamps();
         });
     }

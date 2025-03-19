@@ -22,7 +22,7 @@ class ScanController extends Controller
         
         if ($user) {
             // Redirect ke form absensi dengan data user
-            return redirect()->route('absen.form', [
+            return redirect()->route('parkir_kendaraan.form', [
                 'license_plate' => $user->plat_number,
                 'name' => $user->name,
                 'nik' => $user->nis,

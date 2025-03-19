@@ -7,7 +7,7 @@
         <div class="tf-balance-box">
             <div class="d-flex justify-content-between align-items-center">
                 <h2 class="text-center mb-4 text-primary fw-bold">Daftar Kendaraan Terparkir</h2>
-                <a href="{{ route('izin.create') }}" class="btn btn-warning">Izin</a>
+                <!-- <a href="{{ route('izin.create') }}" class="btn btn-warning">Izin</a> -->
             </div>
         </div>
     </div>
@@ -37,7 +37,7 @@
                     <tr>
                         <th>No</th>
                         <th>Plat Nomor</th>
-                        <th>Status</th>
+                        <!-- <th>Status</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -45,11 +45,11 @@
                     <tr>
                         <td>{{ $key + 1 }}</td>
                         <td class="license-plate">{{ $car->qr_code }}</td>
-                        <td>
+                        <!-- <td>
                             <span class="badge bg-{{ $car->status == 'parkir' ? 'success' : 'warning' }}">
                                 {{ ucfirst($car->status) }}
                             </span>
-                        </td>
+                        </td> -->
                     </tr>
                     @endforeach
                 </tbody>
@@ -58,7 +58,7 @@
     </div>
 
     <!-- Tabel B -->
-    <div class="card shadow-lg">
+    <!-- <div class="card shadow-lg">
         <div class="card-header bg-success text-white">
             <h5 class="mb-0">Tabel Parkir B</h5>
         </div>
@@ -80,8 +80,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    @endforeach
+    </div>-->
+    @endforeach 
 </div>
 
 <script>
